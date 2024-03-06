@@ -15,10 +15,7 @@ export default function NavBar() {
                 </div>
 
                 <div className="Logo">
-                    <h1>LEGO</h1>
-                    {/* <Link to="/">
-                        <h1>LEGO</h1>
-                    </Link> */}
+                    <h1>LEGO UI</h1>
                 </div>    
             </div>
 
