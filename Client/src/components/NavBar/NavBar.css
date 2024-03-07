@@ -1,0 +1,67 @@
+/* header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+h1{
+    color: rgb(59, 156, 221);
+}
+
+nav{
+    background-color: var(--nev_bar);
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgb(59, 156, 221);
+}
+
+.right-nav{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-nav{
+    width: 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.searchbar{
+    width: 30vw;
+    height: 30px;
+    border: 2px solid rgb(59, 156, 221);
+    border-radius: 5px;
+    background-color: transparent;
+    padding-left: 3%;
+    font-size: 15px;
+    color: rgb(59, 156, 221) ;
+}
+
+.profile{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid rgb(59, 156, 221);
+}
+
+
+
+.nav-btn{
+    height: 35px;
+    color: rgb(59, 156, 221) ;
+    font-size: 15px;
+    font-weight: bold;
+    width: 70px;
+    border: 2px solid rgb(59, 156, 221);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 5%;
+}
