@@ -6,7 +6,7 @@ export default function HamburgerMenu() {
     <>
       <div id="container">
         <input id="nav-input" type="checkbox" />
-        <label class="hamburger" for="nav-input">
+        <label className="hamburger" htmlFor="nav-input">
           <span></span>
         </label>
       </div>
