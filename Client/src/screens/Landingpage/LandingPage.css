@@ -1,0 +1,124 @@
+:root{
+    --Landing-btn-color1:#583f19 ;       ;
+    --landing--color2:  ;
+}
+
+
+.LandingPage {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 100dvh;
+    min-width: 100dvw;
+    background: url(../../assets/LEGOFINAL.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #000;
+}
+
+.landingPage-title {
+    font-size: 45px;
+    color: rgb(181, 212, 216);
+    font-weight: 900;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    ;
+    /* line-height: 60px; */
+
+
+}
+
+.main-LandingPage {
+    text-align: left;
+    width: 450px;
+    margin: 100px 0 0 40px;
+}
+
+.lego-brick-button {
+    background: url('../../assets/wallpaperflare.com-wallpaper.jpg');
+}
+
+.p-LandingPage {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: .5px;
+    color: rgb(158, 235, 226);
+    margin: -20px 0 30px 0;
+    opacity: .8;
+}
+
+
+
+.span {
+    color: rgb(48, 155, 227);
+    font-weight: 900;
+}
+
+.left-nav-components-landingpage {
+    display: flex;
+    font-size: 24px;
+    margin: 30px 0 30px 0;
+    width: 35vw;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.left-nav-components-landingpage li a {
+    text-decoration: none;
+    color: rgb(42, 153, 165);
+    transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+}
+
+.left-nav-components-landingpage li a:hover {
+    text-decoration: underline;
+    color: rgb(43, 207, 225);
+}
+
+
+/* btn css */
+
+.btn-LandingPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; 
+    width: 230px;
+}
+
+.button-74 {
+    background-color: #b3b5b9;
+    border: 2px solid var(--Landing-btn-color1);
+    border-radius: 10px;
+    box-shadow: var(--Landing-btn-color1) 4px 4px 0 0;
+    color: var(--Landing-btn-color1);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 0 23px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-74:hover {
+    background-color: #fff;
+}
+
+.button-74:active {
+    box-shadow: var(--Landing-btn-color1) 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+    .button-74 {
+        min-width: 120px;
+        padding: 0 25px;
+    }
+}
