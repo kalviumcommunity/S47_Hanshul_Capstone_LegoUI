@@ -64,7 +64,6 @@ export default function LoginPage() {
                 Google
               </button>
             </form>
-
             <form action="" id="register" className="input-group-register" style={{ left: registerLeft }}>
               <div className="input-box">
                 <span className='icon'><FaUser /></span>
