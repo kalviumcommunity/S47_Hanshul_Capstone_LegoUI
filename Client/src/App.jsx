@@ -9,13 +9,11 @@ function App() {
 
   return (
     <>
-    {/* <MainPage /> */}
-    <LoginPage/>
       <Router>        
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/LoginPage" element={<LoginPage />} />
-          <Route path="/MainPage" element={<MainPage/>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/home" element={<MainPage/>} />
         </Routes>
       </Router>
     </>
