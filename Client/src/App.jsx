@@ -9,7 +9,8 @@ function App() {
 
   return (
     <>
-    <MainPage />
+    {/* <MainPage /> */}
+    <LoginPage/>
       <Router>        
         <Routes>
           <Route path="/" element={<LandingPage />} />

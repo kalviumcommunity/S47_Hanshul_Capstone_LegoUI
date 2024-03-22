@@ -8,17 +8,14 @@ export default function NavBar() {
   return (
     <>
       <header>
-        <nav>
+        <nav className='nav-bar'>
             <div className="left-nav">
                 <div className='hamburgur-menu'>
                     <HamburgerMenu/>
                 </div>
 
                 <div className="Logo">
-                    <h1>LEGO</h1>
-                    {/* <Link to="/">
-                        <h1>LEGO</h1>
-                    </Link> */}
+                    <h1>LEGO UI</h1>
                 </div>    
             </div>
 
@@ -30,10 +27,11 @@ export default function NavBar() {
                 <div className="darkmode">
                     <Togalbtn/>
                 </div>
-
+                <Link to ="/LoginPage">
                 <div>
                     <button className="login-nav-btn nav-btn" type="button">Login</button>
                 </div>
+                </Link>
                 
                 <div >
                 <button className="Signup-nav-btn nav-btn" > Sign Up</button>
