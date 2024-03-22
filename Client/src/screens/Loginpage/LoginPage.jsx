@@ -1,101 +1,102 @@
-import React, { useState } from "react";
-import "./Loginpage.css";
-import { FaUser } from "react-icons/fa";
-import { IoLockClosed } from "react-icons/io5";
+import React, { useState } from 'react';
+import './Loginpage.css';
 import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
+
 
 export default function LoginPage() {
-  const [isLoginForm, setIsLoginForm] = useState(false);
+  const [loginLeft, setLoginLeft] = useState('0px');
+  const [registerLeft, setRegisterLeft] = useState('450px');
+  const [buttonLeft, setButtonLeft] = useState('0px');
 
-  const toggleForm = (isLogin) => {
-    setIsLoginForm(isLogin);
-    console.log(isLoginForm);
+  const login = () => {
+    setLoginLeft('50px');
+    setRegisterLeft('450px');
+    setButtonLeft('0px');
+  };
+
+  const register = () => {
+    setLoginLeft('-400px');
+    setRegisterLeft('50px');
+    setButtonLeft('110px');
   };
 
   return (
     <>
-      <div className="login-page">
-        <div className={`wrapper ${isLoginForm ? 'active' : ''}`}>
-          <span className="bg-animate"></span>
-          <span className="bg-animate2"></span>
-
-          <div className="form-box login ">
-            <h2 className="animation" style={{'--i': 0 }}>Login</h2>
-            <form action="/">
-              <div className="input-box animation" style={{'--i': 1 }}>
-                <input type="text" required />
-                <label>Username</label>
-                <i>
-                  {" "}
-                  <FaUser />{" "}
-                </i>
-              </div>
-              <div className="input-box animation"style={{'--i': 2 }}>
-                <input type="password" required />
-                <label>Password</label>
-                <i>
-                  <IoLockClosed />
-                </i>
-              </div>
-              <button className="submit-btn-login animation"style={{'--i': 3 }} type="submit">
+      <div className="LoginPage">
+        <div className="hero">
+          <div className="form-box">
+            <div className="button-box" >
+              <div id="btn" style={{ left: buttonLeft }}></div>
+              <button type="button" className="toggle-btn" onClick={login}>
                 Login
               </button>
-              <div className="loger-link animation" style={{'--i': 4 }}>
-                <p>
-                  Don't have an account?{" "}
-                  <a className="register-link" onClick={() => toggleForm(true)}>
-                    Sign up
-                  </a>
-                </p>
-              </div>
-            </form>
-          </div>
-          <div className="info-text login">
-            <h2>Welcome Back!</h2>
-            <p className="text-login">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <div className="form-box register">
-            <h2 className="animation">Sign Up</h2>
-            <form action="/">
-              <div className="input-box animation">
+              <button type="button" className="toggle-btn toggle-btn-right" onClick={register}>
+                Register
+              </button>
+            </div>
+            <form action="" id="login" className=" login-form input-group-login" style={{ left: loginLeft }}>
+              <div className="input-box">
+                <span className='icon'><MdEmail /></span>
                 <input type="text" required />
-                <label>Username</label>
-                <i>
-                  {" "}
-                  <FaUser />{" "}
-                </i>
+                <label htmlFor="">Email</label>
               </div>
-              <div className="input-box animation">
-                <input type="text" required />
-                <label>Email</label>
-                <i>
-                  {" "}
-                  <MdEmail />{" "}
-                </i>
-              </div>
-              <div className="input-box animation">
+              <div className="input-box">
+                <span className='icon'><RiLockPasswordFill /></span>
                 <input type="password" required />
-                <label>Password</label>
-                <i>
-                  <IoLockClosed />
-                </i>
+                <label htmlFor="">Password</label>
               </div>
-              <button className="submit-btn-login animation" type="submit">
+              <div className="remember-forgot">
+                <div>
+                <input className="input-field check-box" type="checkbox" name="" id="" />
+                <span>Remember Password</span>
+                </div>
+                <div>
+                <a href="">Forgot Password</a>
+                </div>
+              </div>
+              <button className="submit-btn-loginpage" type="submit">LogIn</button>
+              <h3 className='or'>
+                OR
+              </h3>
+              <button type="submit" className="google-btn">
+                Google
+              </button>
+            </form>
+            <form action="" id="register" className="input-group-register" style={{ left: registerLeft }}>
+              <div className="input-box">
+                <span className='icon'><FaUser /></span>
+                <input type="text" required />
+                <label htmlFor="">User Name</label>
+              </div>
+              <div className="input-box">
+                <span className='icon'><MdEmail /></span>
+                <input type="email" required />
+                <label htmlFor="">Email</label>
+              </div>
+              <div className="input-box">
+                <span className='icon'><RiLockPasswordFill /></span>
+                <input type="password" required />
+                <label htmlFor="">Password</label>
+              </div>
+              <div className="remember-forgot">
+              <input type="checkbox" name="" id="" className="check-box" />
+              <span>
+                {' '}
+                I agree to the <a href="">Terms & conditions</a>
+              </span>
+              </div>
+              <button type="submit" className="submit-btn-loginpage">
                 Sign Up
               </button>
-              <div className="loger-link animation">
-                <p>
-                  Already have an account?{" "}
-                  <a className="login-link" onClick={() => toggleForm(true)}>
-                    Login
-                  </a>
-                </p>
-              </div>
+              <h3 className='or'>
+                OR
+              </h3>
+              <button type="submit" className="google-btn">
+                Google
+              </button>
             </form>
-          </div>
-          <div className="info-text register">
-            <h2 className="animation">Welcome Back!</h2>
-            <p className="register-text animation">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
         </div>
       </div>
