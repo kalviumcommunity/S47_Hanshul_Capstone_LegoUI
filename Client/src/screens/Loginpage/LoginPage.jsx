@@ -10,6 +10,10 @@ export default function LoginPage() {
   const [registerLeft, setRegisterLeft] = useState('450px');
   const [buttonLeft, setButtonLeft] = useState('0px');
 
+  const loginwithgoogle = ()=>{
+    window.open("http://localhost:500/auth/google/callback","_self")
+}
+
   const login = () => {
     setLoginLeft('50px');
     setRegisterLeft('450px');
@@ -60,10 +64,11 @@ export default function LoginPage() {
               <h3 className='or'>
                 OR
               </h3>
-              <button type="submit" className="google-btn">
+              <button onClick={loginwithgoogle} type="submit" className="google-btn">
                 Google
               </button>
             </form>
+
             <form action="" id="register" className="input-group-register" style={{ left: registerLeft }}>
               <div className="input-box">
                 <span className='icon'><FaUser /></span>
@@ -93,7 +98,7 @@ export default function LoginPage() {
               <h3 className='or'>
                 OR
               </h3>
-              <button type="submit" className="google-btn">
+              <button onClick={loginwithgoogle} type="submit" className="google-btn">
                 Google
               </button>
             </form>
