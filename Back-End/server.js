@@ -8,6 +8,8 @@ const session = require('express-session');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-google-oauth2').Strategy;
 const userdb = require('./model/user.Schema');
+const userRoutes = require('./routes/userRoutes.js');
+
 
 const clientid = process.env.CLIENTID;
 const clientsecret = process.env.CLINTSECRET;
@@ -15,14 +17,18 @@ const sessionKey = process.env.SESSIONKEY;
 
 ConnectToDB() 
 
+
 app.use(cors(
     {
         origin: "http://localhost:3000",
         method : "GET, POST, PUT, DELETE",
         credentials: true
     }
-))
-app.use(express.json());
+    ))
+    app.use(express.json());
+
+    // Load Routes
+    app.use('/api/users', userRoutes)
 
 // setup session 
 app.use(session({
