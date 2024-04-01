@@ -3,7 +3,7 @@ require("dotenv").config();
 const app = express();
 const cors = require('cors');
 const PORT =500;
-const ConnectToDB = require('./db/connect');
+const ConnectToDB = require('./config/dbconnect.js');
 const session = require('express-session');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-google-oauth2').Strategy;
@@ -18,17 +18,11 @@ const sessionKey = process.env.SESSIONKEY;
 ConnectToDB() 
 
 
-app.use(cors(
-    {
-        origin: "http://localhost:3000",
-        method : "GET, POST, PUT, DELETE",
-        credentials: true
-    }
-    ))
-    app.use(express.json());
+app.use(cors({origin: "http://localhost:3000",method : "GET, POST, PUT, DELETE",credentials: true}))
+app.use(express.json());
 
-    // Load Routes
-    app.use('/api/users', userRoutes)
+ // Load Routes
+app.use('/api/users', userRoutes)
 
 // setup session 
 app.use(session({
