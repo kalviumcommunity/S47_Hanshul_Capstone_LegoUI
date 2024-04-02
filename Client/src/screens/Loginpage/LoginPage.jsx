@@ -41,6 +41,7 @@ export default function LoginPage() {
               </button>
             </div>
             <form action="" id="login" className=" login-form input-group-login" style={{ left: loginLeft }}>
+              <div className='form-box-submit'>
               <div className="input-box">
                 <span className='icon'><MdEmail /></span>
                 <input type="text" required />
@@ -61,6 +62,7 @@ export default function LoginPage() {
                 </div>
               </div>
               <button className="submit-btn-loginpage" type="submit">LogIn</button>
+              </div>
               <h3 className='or'>
                 OR
               </h3>
@@ -70,6 +72,7 @@ export default function LoginPage() {
             </form>
 
             <form action="" id="register" className="input-group-register" style={{ left: registerLeft }}>
+            <div className='form-box-submit'>
               <div className="input-box">
                 <span className='icon'><FaUser /></span>
                 <input type="text" required />
@@ -95,6 +98,7 @@ export default function LoginPage() {
               <button type="submit" className="submit-btn-loginpage">
                 Sign Up
               </button>
+              </div>
               <h3 className='or'>
                 OR
               </h3>

@@ -45,6 +45,11 @@ body {
     overflow: hidden;
 }
 
+.form-box-submit{
+    position: relative;
+    top: 30px;
+}
+
 .button-box {
     width: 220px;
     margin: 35px auto;
@@ -148,7 +153,7 @@ body {
 .or{
     text-align: center;
     position: relative;
-    bottom: 15px;
+    bottom: 10px;
     font-size: 20px;
     color: #fff;
 
