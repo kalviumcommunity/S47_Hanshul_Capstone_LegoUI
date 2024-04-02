@@ -1,7 +1,7 @@
 const UserModel = require("../model/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { PassThrough } = require("nodemailer/lib/xoauth2");
+const transporter = require("../config/emailConfig.js");
 
 class UserControllers {
   static userRegistration = async (req, res) => {
@@ -123,7 +123,7 @@ class UserControllers {
       if(user){
         const secret = user._id + process.env.JWT_SECRET_KEY 
         const token = jwt.sign({userID:user._id}, secret  ,{ expiresIn: '15m'})
-        const link = `http://localhost:3000/api/user/reset/${user._id}/${token}`
+        const link = `http://127.0.0.1:3000/api/user/reset/${user._id}/${token}`
         console.log(link)
 
         //send email
