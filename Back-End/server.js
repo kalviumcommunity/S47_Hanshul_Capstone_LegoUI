@@ -7,7 +7,7 @@ const ConnectToDB = require('./config/dbconnect.js');
 const session = require('express-session');
 const passport = require('passport');
 const OAuth2Strategy = require('passport-google-oauth2').Strategy;
-const userdb = require('./model/user.Schema');
+const userdb = require('./model/user.Schema.js');
 const userRoutes = require('./routes/userRoutes.js');
 
 

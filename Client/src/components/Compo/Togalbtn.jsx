@@ -19,7 +19,7 @@ export default function Togalbtn() {
 
   return (
     <>
-        <button onClick={toggleTheme} className="light_dark"></button>
+        <button onClick={toggleTheme} className="light-dark"></button>
     </>
   );
 }

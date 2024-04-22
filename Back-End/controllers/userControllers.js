@@ -1,4 +1,4 @@
-const UserModel = require("../model/User");
+const UserModel = require("../model/User.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const transporter = require("../config/emailConfig.js");
@@ -26,7 +26,7 @@ class UserControllers {
             const token = jwt.sign(
               { userID: saved_user._id },
               process.env.JWT_SECRET_KEY,
-              { expiresIn: "24h" }
+              { expiresIn: "1d" }
             );
             res
               .status(201)
