@@ -1,6 +1,7 @@
+
 const mongoose = require('mongoose');
 
-// Defining User Schema 
+// defining user JWT Sehema
 
 const userSchema = new mongoose .Schema({
     name : {
