@@ -21,7 +21,7 @@ export default function LandingPage() {
               <li><a className={LandingPageStyle.aLandingPage} href="">Contact us</a></li>
             </ul> </div>
           <div className={LandingPageStyle.rightnavLandingPage}>
-          <button onClick={handleClickLogin} class={LandingPageStyle.button30} role="button">Sign Up</button>
+          <button onClick={handleClickLogin} className={LandingPageStyle.button30} role="button">Sign Up</button>
           </div>
         </nav>
       <main className={LandingPageStyle.mainLandingPage}>

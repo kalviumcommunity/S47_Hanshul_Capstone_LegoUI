@@ -1,17 +1,13 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainPage from "./screens/Screens/MainPage.jsx";
-import LoginPage from "./screens/Screens/LoginPage.jsx";
-import LandingPage from "./screens/Screens/LandingPage.jsx";
-// import Dashboard from "./pages/Dashboard";
-// import Users from "./pages/Users";
-// import Messages from "./pages/Messages";
-// import Analytics from "./pages/Analytics";
-// import FileManager from "./pages/FileManager";
-// import Order from "./pages/Order";
-// import Saved from "./pages/Saved";
-// import Setting from "./pages/Setting";
+import MainPage from "./screens/main/MainPage.jsx";
+import LoginPage from "./screens/auth/LoginPage.jsx";
+import LandingPage from "./screens/main/LandingPage.jsx";
+import SignUp from "./screens/auth/SignUp.jsx";
+import ForgotPasswordForm from "./screens/auth/ForgotPassword.jsx";
+import ResetPassword from "./screens/auth/ResetPassword.jsx";
+// import ChangePassword from "./screens/Profile/ChangePassword.jsx";
 
 function App() {
   return (
@@ -20,23 +16,14 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/forgotPassword" element={<ForgotPasswordForm/>} />
           <Route path="/home" element={<MainPage />} />
+          <Route path="/reset/:id/:token" element={<ResetPassword  />} />
         </Routes>
-        {/* <Routes>
-          <Route path="/home" element={<Dashboard />}>
-            <Route path="/Dashbord" element={<Dashboard />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/file-manager" element={<FileManager />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/saved" element={<Saved />} />
-            <Route path="/settings" element={<Setting />} />
-          </Route>
-        </Routes> */}
       </Router>
     </>
-  );
+  );  
 }
 
 export default App;
