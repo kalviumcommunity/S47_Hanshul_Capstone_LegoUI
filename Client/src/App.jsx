@@ -7,7 +7,9 @@ import LandingPage from "./screens/main/LandingPage.jsx";
 import SignUp from "./screens/auth/SignUp.jsx";
 import ForgotPasswordForm from "./screens/auth/ForgotPassword.jsx";
 import ResetPassword from "./screens/auth/ResetPassword.jsx";
-// import ChangePassword from "./screens/Profile/ChangePassword.jsx";
+import ChangePassword from "./screens/Profile/ChangePassword.jsx";
+import Profile from "./screens/Profile/Profile.jsx";
+import EditProfile from "./screens/Profile/EditProfile.jsx";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="/forgotPassword" element={<ForgotPasswordForm/>} />
           <Route path="/home" element={<MainPage />} />
           <Route path="/reset/:id/:token" element={<ResetPassword  />} />
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/profile/edit" element={<EditProfile/>} />
+          <Route path="/profile/changepassword" element={<ChangePassword />} />
         </Routes>
       </Router>
     </>

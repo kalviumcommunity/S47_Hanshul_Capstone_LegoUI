@@ -1,42 +1,33 @@
-/* header{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-h1{
-    color: rgb(59, 156, 221);
+.logo{
+    color: #ACE1FF;
 }
-.darkmode{
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-}
+
+
 .navbar{
+    z-index: 2;
     background-color: var(--nev_bar);
     padding: 0 20px 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid rgb(59, 156, 221);
+    background-color: #304057;
+    height: 60px;
 }
 
-.icons{
-    font-size: 30px;
-    color: white;
-    box-shadow: 0 0 20 0 #f6af64;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-  }
-  
-  .icons:hover{
-    color: #f6af64;
-    transform: scale(1.2);
-  }
+.rightnav div h4{
+    color: #9EDCFF;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.rightnav div h4:hover{
+    color: rgb(170, 199, 210);
+    text-decoration: underline;
+}
+
 
 .rightnav{
-    width: 15%;
+    width: 14%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,26 +40,108 @@ h1{
     justify-content: space-between;
 }
 
+.centernav{
+    display: flex;
+}
+
+.searchbaricon{
+    color: black;
+    font-size: 25px;
+    position: relative;
+    left: 32px;
+    top: 2px;
+
+}
+
 .searchbar{
     width: 30vw;
     height: 30px;
-    border: 2px solid rgb(59, 156, 221);
+    border: none;
+    outline: none;
+    border:1px solid white;
     border-radius: 5px;
-    background-color: transparent;
-    padding-left: 3%;
-    /* font-size: 15px; */
+    background-color: white;
+    padding-left: 7%;
     color: rgb(59, 156, 221) ;
 }
 
-.profile{
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 2px solid rgb(59, 156, 221);
+.searchbar::placeholder{
+    color: rgb(0, 0, 0) ;
 }
 
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    background-color: white;
+}
 
+.dropdown{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 40px;
+    top: 53px;
+    right: -6px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    padding: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown ul{
+    padding: 2%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #e1dbdb;
+    color: black;
+
+}
+
+.profileList{
+    padding: 10px;
+    font-size: 20px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) ;
+    transition: background-color 0.3s ease;
+}
+
+.profileList:hover{
+    background-color:rgb(153, 203, 236);
+    color: #000000;
+}
+
+.link{
+    color: rgb(59, 156, 221);
+    text-decoration: none;
+}
+
+.loginuser{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+}
+
+.userimg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;  
+    background-color: transparent;
+    cursor: pointer;
+    background-size: cover;
+}
 
 .nav-btn{
     height: 35px;

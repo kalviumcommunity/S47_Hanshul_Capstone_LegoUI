@@ -1,0 +1,21 @@
+:root {
+    --body_background: #9EC8B9;
+    --body_color: #000;
+    --nev_bar: #000000b2;
+    --main_box_bg_color: #1B4242;
+    --ans_backgroung_color: #abf3d9cd;
+    --btn_color: #61be9e;
+    --btn_hover_color: #70a460;
+    --question_color: #2F7E9E;
+}
+
+[data-theme="dark"] {
+    --body_background: #092635;
+    --body_color: white;
+    --nev_bar: #5c8374ac;
+    --main_box_bg_color: #5C8374;
+    --ans_backgroung_color: #1B4242;
+    --btn_color: #1b4242c5;
+    --btn_hover_color: #8dc04e;
+    --question_color: #2F7E9E;
+}

@@ -1,66 +1,62 @@
-import { Link } from "react-router-dom";
-import "../Styles/MainPage.css"
+import React, { useState } from 'react';
+import "../Styles/MainPage.css";
 import NavBar from "../../components/Compo/NavBar";
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import Sidebar from '../../components/Compo/SideBar';
+import Doc from "../mainPageCompo/Doc";
+import NavigationMenu from "../mainPageCompo/NavigationMenus";
+import LoginPages from "../mainPageCompo/LoginPages";
+import LandingPages from "../mainPageCompo/LandingPages";
+import Buttons from "../mainPageCompo/Buttons";
+import SliderDesigns from "../mainPageCompo/SliderDesigns";
+import CardDesigns from "../mainPageCompo/CardDesigns";
 
 export default function MainPage() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState('Doc');
 
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     try {
-  //       const response = await axios.get('http://localhost:500/api/users/loggedUser', {
-  //         withCredentials: true, // Include credentials (cookies)
-  //       });
-  //       if (response.data.status === 'success') {
-  //         setUser(response.data.data);
-  //       } else {
-  //         setError('Failed to fetch user data');
-  //       }
-  //     } catch (error) {
-  //       setError('Error fetching user data');
-  //       console.log(error)
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchUser();
-  // }, []);
-
-  // if (loading) {
-  //   return <p>Loading...</p>;
-  // }
-
-  // if (error) {
-  //   return <p>{error}</p>;
-  // }
-
-  // if (!user) {
-  //   return <p>No user data</p>;
-  // }
+  const renderComponent = () => {
+    switch (currentComponent) {
+      case 'Doc':
+        return <Doc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />;
+      case 'NavigationMenu':
+        return <NavigationMenu isSidebarOpen={isSidebarOpen}/>;
+      case 'LoginPages':
+        return <LoginPages isSidebarOpen={isSidebarOpen}/>;
+      case 'LandingPages':
+        return <LandingPages isSidebarOpen={isSidebarOpen}/>;
+      case 'Buttons':
+        return <Buttons isSidebarOpen={isSidebarOpen}/>;
+      case 'SliderDesigns':
+        return <SliderDesigns isSidebarOpen={isSidebarOpen}/>;
+      case 'CardDesigns':
+        return <CardDesigns isSidebarOpen={isSidebarOpen}/>;
+      default:
+        return <Doc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />;
+    }
+  };
 
   return (
     <>
-      <NavBar/>
-      <Link to="/create">
+      <div className="mainpagediv">
+        <NavBar toggleSidebar={toggleSidebar} />
+        <Sidebar isOpen={isSidebarOpen} setCurrentComponent={setCurrentComponent}  />
+        <main>
+        
+          {renderComponent()}
+        </main>
+      </div>
+
+      {/* <Link to="/create">
         <a href="">create post image</a>
       </Link>
       <br />
       <Link to="/display">
       <a href="">display image post</a>
-      </Link>
-      {/* <div>
-      <h1>User Details</h1>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      Add more user details as needed 
-    </div>    */}
+      </Link> */}
     </>
   );
 }
