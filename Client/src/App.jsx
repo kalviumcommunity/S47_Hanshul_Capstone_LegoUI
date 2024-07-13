@@ -10,6 +10,7 @@ import ResetPassword from "./screens/auth/ResetPassword.jsx";
 import ChangePassword from "./screens/Profile/ChangePassword.jsx";
 import Profile from "./screens/Profile/Profile.jsx";
 import EditProfile from "./screens/Profile/EditProfile.jsx";
+import Adminpost from "./screens/post/Adminpost.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/profile" element={<Profile/>} />
           <Route path="/profile/edit" element={<EditProfile/>} />
           <Route path="/profile/changepassword" element={<ChangePassword />} />
+          <Route path="/code/admin/post" element={<Adminpost/>} />
         </Routes>
       </Router>
     </>

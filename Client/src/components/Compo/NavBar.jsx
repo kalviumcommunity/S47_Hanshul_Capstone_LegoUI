@@ -35,8 +35,9 @@ export default function NavBar({ toggleSidebar }) {
 
           <div className={nav.rightnav}>
             <div>
-              {/* <FaPinterest className={nav.icons} /> */}
-              <h4>Post Code</h4>
+              <Link to={"/code/admin/post"}>
+                <h4>Post Code</h4>
+              </Link>
             </div>
             <div>
               <Togalbtn />
