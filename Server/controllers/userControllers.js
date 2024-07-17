@@ -1,7 +1,9 @@
 const UserModel = require("../model/User.js");
+const TokenBlacklist = require('../model/TokenBlacklist.modal.js');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const transporter = require("../config/emailConfig.js");
+
 
 class UserControllers {
   static userRegistration = async (req, res) => {
@@ -20,6 +22,8 @@ class UserControllers {
               email: email,
               password: hashPassword,
               tc: tc,
+              provider: "JWT",
+
             });
             await doc.save();
             const saved_user = await UserModel.findOne({ email: email });
@@ -112,9 +116,6 @@ class UserControllers {
     }
   }
 
-  static loggedUser = async (req, res) => {
-    res.send({ status: "success", data: req.user });
-  };
 
   static sendUserPasswordResetEmail = async (req,res) => {
     const {email} = req.body
@@ -170,8 +171,39 @@ class UserControllers {
     } catch (error) {
       console.log(error)
       res.send({status: "failed", msg: "Invalid token"})
-    }  
+    }
+    
   }
+
+
+  static userLogout = async (req, res) => {
+    try {
+      const token = req.header('Authorization').replace('Bearer ', '');
+      // Add the token to the blacklist
+      const blacklistedToken = new TokenBlacklist({ token });
+      await blacklistedToken.save();
+      
+      res.send({ status: "success", msg: "Logout successful" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ status: "failed", msg: "Logout failed" });
+    }
+  };
+
+
+  static loggedUser = async (req, res) => {
+    try {
+      if (!req.user) {
+        return res.status(404).send({ status: "failed", msg: "User not found" });
+      }
+      res.send({ status: "success", data: req.user });
+    } catch (error) {
+      console.log("Error in loggedUser:", error);
+      res.status(500).send({ status: "failed", msg: "Server Error" });
+    }
+  };
+
+
 }
 
 module.exports = UserControllers;

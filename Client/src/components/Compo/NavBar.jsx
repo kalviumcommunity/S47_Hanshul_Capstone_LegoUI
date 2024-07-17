@@ -1,17 +1,43 @@
-import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../Services/UserContext';
+import { Link, useNavigate } from "react-router-dom";
 import nav from "../Styles/NavBar.module.css";
 import { motion } from "framer-motion";
 //components
 import HamburgerMenu from "./HamburgerMenu";
 import Togalbtn from "../Compo/Togalbtn";
 //icons
-import { FaUser } from "react-icons/fa";
 import { IoMdSearch } from "react-icons/io";
 
 export default function NavBar({ toggleSidebar }) {
   const [open, setopen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleJWTLogout = () => {
+    // setLoading(true);
+    localStorage.removeItem('token'); // or remove cookie if using cookies
+    setUser(null);
+    // setLoading(false);
+    navigate('/login'); // redirect to login page or home page
+  };
+
+  const googleLogout = () => {
+    setLoading(true);
+    window.open("http://localhost:500/logout", "_self");
+    navigate('/login');
+  };
+
+  const handleLogout = () => {
+    if (user?.provider === 'JWT') {
+      handleJWTLogout();
+    } else {
+      googleLogout();
+    }
+  };
+
   return (
     <>
       <header>
@@ -76,7 +102,9 @@ export default function NavBar({ toggleSidebar }) {
               </li>
             </Link>
             <Link className={nav.link} to="">
-              <li className={nav.profileList}>Logout</li>
+              <li onClick={handleLogout} className={nav.profileList}>
+                Logout
+              </li>
             </Link>
           </ul>
         </motion.div>
@@ -84,4 +112,3 @@ export default function NavBar({ toggleSidebar }) {
     </>
   );
 }
-;

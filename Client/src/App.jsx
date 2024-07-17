@@ -11,6 +11,7 @@ import ChangePassword from "./screens/Profile/ChangePassword.jsx";
 import Profile from "./screens/Profile/Profile.jsx";
 import EditProfile from "./screens/Profile/EditProfile.jsx";
 import Adminpost from "./screens/post/Adminpost.jsx";
+import UserProfile from "./screens/main/Userprofile.jsx";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/profile/edit" element={<EditProfile/>} />
           <Route path="/profile/changepassword" element={<ChangePassword />} />
           <Route path="/code/admin/post" element={<Adminpost/>} />
+          <Route path="loggedUser" element={<UserProfile/>} />
         </Routes>
       </Router>
     </>

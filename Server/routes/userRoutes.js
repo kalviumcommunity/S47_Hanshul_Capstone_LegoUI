@@ -2,11 +2,13 @@ const express = require('express');
 const router = express.Router();
 const UserControllers = require('../controllers/userControllers');
 const checkUserAuth  = require('../middlewares/auth.middleware');
+const checkBlacklist = require('../middlewares/checkBlacklist');
 
 // Route level Middleware - to protect Route
 
 router.use('/changepassword', checkUserAuth) 
-router.use('/loggedUser', checkUserAuth) 
+router.use('/loggedUser', checkUserAuth )
+router.use('jwt/logout', checkBlacklist )
 
 
 //Public Routes
@@ -20,5 +22,6 @@ router.post('/reset-password/:id/:token', UserControllers.sendUserPasswordReset)
 
 router.post('/changepassword', UserControllers.changeUserPassword);
 router.get('/loggedUser', UserControllers.loggedUser);
+router.get('jwt/logout', UserControllers.userLogout);
 
 module.exports = router

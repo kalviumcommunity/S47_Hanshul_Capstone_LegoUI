@@ -22,6 +22,10 @@ const userSchema = new mongoose .Schema({
     tc : {
         type : Boolean,
         required : true
+    },
+    provider : {
+        type : String,
+        required : true
     }
 })
 

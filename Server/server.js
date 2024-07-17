@@ -54,7 +54,7 @@ passport.use(
                         googleId: profile.id,
                         displayName: profile.displayName,
                         email: profile.emails[0].value,
-                        image: profile.photos[0].value
+                        image: profile.photos[0].value,
                     });
                     await user.save();
                 }
@@ -78,13 +78,12 @@ passport.deserializeUser((user, done)=>{
 app.get("/auth/google",passport.authenticate("google", { scope: ["email", "profile"] }));
 
 app.get("/auth/google/callback",passport.authenticate("google", {
-        successRedirect : "http://localhost:3000/",
+        successRedirect : "http://localhost:3000/home",
         failureRedirect: "http://localhost:3000/login"
     })
 )
 
 app.get("/login/sucess",async(req,res)=>{
-
     if(req.user){
         res.status(200).json({message:"Login Success", user: req.user})
     }else{
