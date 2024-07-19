@@ -4,7 +4,7 @@ import { UserContext } from '../../Services/UserContext';
 
 function CardDesigns({ isSidebarOpen }) {
   const { adminCodes } = useContext(UserContext);
-  const cardDesigns = adminCodes.filter(code => code.sourceCodePath === 'navigation_design');
+  const cardDesigns = adminCodes.filter(code => code.sourceCodePath === 'games_design');
 
   return (
     <div>

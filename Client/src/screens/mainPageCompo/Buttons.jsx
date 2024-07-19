@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import MainPageCardContainer from "../../components/Compo/MainPageCardContainer";
+import { UserContext } from '../../Services/UserContext';
 
-function Buttons() {
+function CardDesigns({ isSidebarOpen }) {
+  const { adminCodes } = useContext(UserContext);
+  const cardDesigns = adminCodes.filter(code => code.sourceCodePath === 'button_design');
+
   return (
     <div>
-      Buttons
+      <MainPageCardContainer adminCodes={cardDesigns} isSidebarOpen={isSidebarOpen} />
     </div>
-  )
+  );
 }
 
-export default Buttons
+export default CardDesigns;

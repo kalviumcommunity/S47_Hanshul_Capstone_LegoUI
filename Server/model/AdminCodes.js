@@ -5,6 +5,7 @@ const codeSchema = new mongoose.Schema({
   description: String,
   imagePath: String,
   sourceCodePath: String,
+  githublink: String,
   html: String,
   css: String,
   js: String,

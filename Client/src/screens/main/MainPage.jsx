@@ -9,6 +9,8 @@ import LandingPages from "../mainPageCompo/LandingPages";
 import Buttons from "../mainPageCompo/Buttons";
 import SliderDesigns from "../mainPageCompo/SliderDesigns";
 import CardDesigns from "../mainPageCompo/CardDesigns";
+import GamesPage from '../mainPageCompo/Games';
+import PageNotFound from '../mainPageCompo/PageNotFound';
 
 export default function MainPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,6 +36,10 @@ export default function MainPage() {
         return <SliderDesigns isSidebarOpen={isSidebarOpen}/>;
       case 'CardDesigns':
         return <CardDesigns isSidebarOpen={isSidebarOpen}/>;
+      case 'GamesPage':
+        return <GamesPage isSidebarOpen={isSidebarOpen}/>;
+      case 'PageNotFound':
+        return <PageNotFound isSidebarOpen={isSidebarOpen}/>;
       default:
         return <Doc toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />;
     }
@@ -49,14 +55,6 @@ export default function MainPage() {
           {renderComponent()}
         </main>
       </div>
-
-      {/* <Link to="/create">
-        <a href="">create post image</a>
-      </Link>
-      <br />
-      <Link to="/display">
-      <a href="">display image post</a>
-      </Link> */}
     </>
   );
 }

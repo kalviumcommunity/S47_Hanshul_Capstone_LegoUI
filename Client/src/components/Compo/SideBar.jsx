@@ -21,6 +21,8 @@ const Sidebar = ({ isOpen , setCurrentComponent  }) => {
       <button onClick={() => setCurrentComponent('Buttons')}>Buttons</button>
       <button onClick={() => setCurrentComponent('SliderDesigns')}>Slider Designs</button>
       <button onClick={() => setCurrentComponent('CardDesigns')}>Card Designs</button>
+      <button onClick={() => setCurrentComponent('GamesPage')}>Games</button>
+      <button onClick={() => setCurrentComponent('PageNotFound')}>404 Error Page</button>
     </motion.div>
   );
 };

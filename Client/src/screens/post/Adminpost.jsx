@@ -8,6 +8,7 @@ function Adminpost() {
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [sourceCodePath, setSourceCodePath] = useState('');
+  const [githublink, setgithublink] = useState('');
   const [html, setHtml] = useState('');
   const [css, setCss] = useState('');
   const [js, setJs] = useState('');
@@ -33,6 +34,7 @@ function Adminpost() {
     formData.append('description', description);
     formData.append('image', image);
     formData.append('sourceCodePath', sourceCodePath);
+    formData.append('githublink', githublink);
     formData.append('html', html);
     formData.append('css', css);
     formData.append('js', js);
@@ -85,6 +87,16 @@ function Adminpost() {
                   value={sourceCodePath}
                   onChange={(e) => setSourceCodePath(e.target.value)}
                   placeholder="Source Code Path"
+                  required
+                />
+              </div>
+              <div className={styles.leftelemetsdiv}>
+                <label className={styles.sourcecodepath}>Git Hub Link :</label>
+                <input
+                  type="text"
+                  value={githublink}
+                  onChange={(e) => setgithublink(e.target.value)}
+                  placeholder="Git Hub Link"
                   required
                 />
               </div>

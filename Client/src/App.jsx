@@ -1,5 +1,6 @@
 import "./App.css";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "./Services/UserContext.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./screens/main/MainPage.jsx";
 import LoginPage from "./screens/auth/LoginPage.jsx";
@@ -12,8 +13,18 @@ import Profile from "./screens/Profile/Profile.jsx";
 import EditProfile from "./screens/Profile/EditProfile.jsx";
 import Adminpost from "./screens/post/Adminpost.jsx";
 import UserProfile from "./screens/main/Userprofile.jsx";
+import CodePage from "./screens/mainPageCompo/CodePage.jsx";
+import Page404 from "./screens/other/Page404.jsx";
 
 function App() {
+  const { user } = useContext(UserContext);
+  const AdminEmail = "hanshulkumawat22@gmail.com";
+  
+  let userEmail = "";
+  if (user) {
+    userEmail = user.provider === "JWT" ? user.email : user.user.email;
+  }
+
   return (
     <>
       <Router>
@@ -21,18 +32,24 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgotPassword" element={<ForgotPasswordForm/>} />
+          <Route path="/forgotPassword" element={<ForgotPasswordForm />} />
           <Route path="/home" element={<MainPage />} />
-          <Route path="/reset/:id/:token" element={<ResetPassword  />} />
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/profile/edit" element={<EditProfile/>} />
+          <Route path="/reset/:id/:token" element={<ResetPassword />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/profile/changepassword" element={<ChangePassword />} />
-          <Route path="/code/admin/post" element={<Adminpost/>} />
-          <Route path="loggedUser" element={<UserProfile/>} />
+          <Route path="/loggedUser" element={<UserProfile />} />
+          <Route path="/codepage" element={<CodePage />} />
+          <Route path="*" element={<Page404 />} />
+
+          {/* Admin Routes */}
+          {user && userEmail === AdminEmail && user.provider !== "JWT" && (
+            <Route path="/code/admin/post" element={<Adminpost />} />
+          )}
         </Routes>
       </Router>
     </>
-  );  
+  );
 }
 
 export default App;

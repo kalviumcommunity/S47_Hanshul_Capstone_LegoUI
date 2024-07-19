@@ -2,16 +2,16 @@ import React from 'react';
 import Card from '../Compo/MainPageCard';
 import styles from '../Styles/MainPageCardContainer.module.css';
 
-const CardContainer = ({ cards, isSidebarOpen }) => {
+const MainPageCardContainer = ({ adminCodes, isSidebarOpen }) => {
   return (
     <div className={styles.cardsContainer}>
-        <div className={`${styles.container} ${isSidebarOpen ? styles.sidebarOpen : styles.sidebarClosed}`}>
-        {cards.map((card, index) => (
-            <Card key={index} image={card.image} title={card.title} isSidebarOpen={isSidebarOpen} />
+      <div className={`${styles.container} ${isSidebarOpen ? styles.sidebarOpen : styles.sidebarClosed}`}>
+        {adminCodes.map((adminCode) => (
+          <Card key={adminCode._id} adminCode={adminCode} isSidebarOpen={isSidebarOpen} />
         ))}
-        </div>
+      </div>
     </div>
   );
 };
 
-export default CardContainer;
+export default MainPageCardContainer;

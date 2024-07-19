@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { getJWTUser } from './JWTLoggedUser';
 import { getGoogleUser } from './GoogleLoggedUser';
+import { getAdminCodes } from '../Services/AdminCodes';
 
 export const UserContext = createContext();
 
@@ -8,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [adminCodes, setAdminCodes] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -31,8 +33,21 @@ export const UserProvider = ({ children }) => {
     fetchUser();
   }, []);
 
+  useEffect(() => {
+    const fetchAdminCodes = async () => {
+      try {
+        const codes = await getAdminCodes();
+        setAdminCodes(codes);
+      } catch (error) {
+        console.error('Failed to fetch admin codes:', error);
+      }
+    };
+
+    fetchAdminCodes();
+  }, []);
+
   return (
-    <UserContext.Provider value={{ user, loading, error, setUser }}>
+    <UserContext.Provider value={{ user, loading, error, setUser, adminCodes }}>
       {children}
     </UserContext.Provider>
   );

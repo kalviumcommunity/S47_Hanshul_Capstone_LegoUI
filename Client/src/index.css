@@ -19,3 +19,30 @@
     --btn_hover_color: #8dc04e;
     --question_color: #2F7E9E;
 }
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #E2E8F0; /* Light grey from the image */
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #5A67D8; /* Main color from the image */
+    border-radius: 10px;
+    border: 3px solid #E2E8F0; /* Matching track color */
+    transition: background-color 0.3s ease;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #434190; /* Darker shade for hover */
+  }
+  
+  /* Sidebar open state */
+  .sidebarOpen {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+  } 

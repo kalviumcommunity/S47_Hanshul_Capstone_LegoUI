@@ -2,7 +2,7 @@ const Code = require('../model/AdminCodes');
 
 const uploadCode = async (req, res) => {
   try {
-    const { title, description, sourceCodePath, html, css, js, } = req.body;
+    const { title, description, sourceCodePath, githublink, html, css, js, } = req.body;
     const imagePath = req.file.path;
 
     const newCode = new Code({
@@ -10,6 +10,7 @@ const uploadCode = async (req, res) => {
       description,
       imagePath,
       sourceCodePath,
+      githublink,
       html,
       css,
       js,

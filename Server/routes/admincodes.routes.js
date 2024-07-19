@@ -15,6 +15,6 @@ const storage = new CloudinaryStorage({
 const upload = multer({ storage: storage });
 
 router.post('/upload', upload.single('image'), uploadCode);
-router.get('/codes', getCodes); // New route for fetching data
+router.get('/codes', getCodes);
 
 module.exports = router;
