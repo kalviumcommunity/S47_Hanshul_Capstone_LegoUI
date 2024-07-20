@@ -2,6 +2,8 @@ import React, { createContext, useState, useEffect } from 'react';
 import { getJWTUser } from './JWTLoggedUser';
 import { getGoogleUser } from './GoogleLoggedUser';
 import { getAdminCodes } from '../Services/AdminCodes';
+import { getUserCodes } from '../Services/UserCodes';
+
 
 export const UserContext = createContext();
 
@@ -10,6 +12,8 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [adminCodes, setAdminCodes] = useState([]);
+  const [userCodes, setUserCodes] = useState([]);
+  const [AdminEmail, setAdminEmail] = useState('hanshulkumawat22@gmail.com')
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,7 +30,7 @@ export const UserProvider = ({ children }) => {
         setError('Failed to fetch user data');
       } finally {
         setLoading(false);
-        console.log(user);
+        
       }
     };
 
@@ -45,9 +49,21 @@ export const UserProvider = ({ children }) => {
 
     fetchAdminCodes();
   }, []);
+  useEffect(() => {
+    const fetchUserCodes = async () => {
+      try {
+        const codes = await getUserCodes();
+        setUserCodes(codes);
+      } catch (error) {
+        console.error('Failed to fetch user codes:', error);
+      }
+    };
+
+    fetchUserCodes();
+  }, []);
 
   return (
-    <UserContext.Provider value={{ user, loading, error, setUser, adminCodes }}>
+    <UserContext.Provider value={{ user, loading, error, setUser, adminCodes, userCodes,AdminEmail }}>
       {children}
     </UserContext.Provider>
   );

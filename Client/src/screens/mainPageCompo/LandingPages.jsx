@@ -4,11 +4,11 @@ import { UserContext } from '../../Services/UserContext';
 
 function CardDesigns({ isSidebarOpen }) {
   const { adminCodes } = useContext(UserContext);
-  const cardDesigns = adminCodes.filter(code => code.sourceCodePath === 'landing_design');
+  const Designs = adminCodes.filter(code => code.sourceCodePath === 'landing_design');
 
   return (
     <div>
-      <MainPageCardContainer adminCodes={cardDesigns} isSidebarOpen={isSidebarOpen} />
+      <MainPageCardContainer adminCodes={Designs} isSidebarOpen={isSidebarOpen} />
     </div>
   );
 }

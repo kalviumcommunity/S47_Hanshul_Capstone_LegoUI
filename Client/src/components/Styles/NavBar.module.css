@@ -27,7 +27,7 @@
 
 
 .rightnav{
-    width: 14%;
+    width: 25%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,6 +42,9 @@
 
 .centernav{
     display: flex;
+    align-items: center;
+    position: relative;
+    left: 100px;
 }
 
 .searchbaricon{
@@ -62,7 +65,7 @@
     border-radius: 5px;
     background-color: white;
     padding-left: 7%;
-    color: rgb(59, 156, 221) ;
+    color: rgb(0, 0, 0) ;
 }
 
 .searchbar::placeholder{

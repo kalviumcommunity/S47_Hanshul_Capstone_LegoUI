@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const getAdminCodes = async () => {
+export const getUserCodes = async () => {
   try {
-    const response = await axios.get('http://localhost:500/api/admin/codes');
+    const response = await axios.get('http://localhost:500/api/user/codes');
     return response.data;
   } catch (error) {
     console.error('Error fetching codes:', error);

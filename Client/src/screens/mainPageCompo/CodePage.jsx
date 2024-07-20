@@ -1,14 +1,15 @@
+// DisplayPage.jsx
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import copy from 'copy-to-clipboard';
 import styles from "../Styles/CodePage.module.css";
 import { FaGithub } from "react-icons/fa";
+import { useLocation } from 'react-router-dom';
 
 const DisplayPage = () => {
   const location = useLocation();
-  const { adminCode } = location.state; // Get the adminCode from the navigation state
+  const code = location.state;
 
   const [copiedSection, setCopiedSection] = useState(null);
 
@@ -92,11 +93,11 @@ const DisplayPage = () => {
         <h1 className={styles.heading}>CSS Login Pages</h1>
         <div className={styles.main}>
           <div className={styles.leftSide}>
-            <img src={adminCode.imagePath} alt={adminCode.title} className={styles.image} />
+            <img src={code.imagePath} alt={code.title} className={styles.image} />
           </div>
           <div className={styles.rightSide}>
-            <p className={styles.description}>{adminCode.description}</p>
-            <a href={adminCode.githublink} target="_blank" rel="noopener noreferrer">
+            <p className={styles.description}>{code.description}</p>
+            <a href={code.githublink} target="_blank" rel="noopener noreferrer">
               <button><FaGithub /> Github Link</button>
             </a>
           </div>
@@ -104,34 +105,34 @@ const DisplayPage = () => {
         <div className={styles.codeSection}>
           <div className={styles.codeHeader}>
             <h3 className={styles.codeHeading}>HTML Code</h3>
-            <button className={styles.copyButton} onClick={() => handleCopy(adminCode.html, 'html')}>
+            <button className={styles.copyButton} onClick={() => handleCopy(code.html, 'html')}>
               {copiedSection === 'html' ? 'Copied!' : 'Copy Code'}
             </button>
           </div>
           <SyntaxHighlighter language="html" style={customDracula} customStyle={customStyle}>
-            {adminCode.html}
+            {code.html}
           </SyntaxHighlighter>
         </div>
         <div className={styles.codeSection}>
           <div className={styles.codeHeader}>
             <h3 className={styles.codeHeading}>CSS Code</h3>
-            <button className={styles.copyButton} onClick={() => handleCopy(adminCode.css, 'css')}>
+            <button className={styles.copyButton} onClick={() => handleCopy(code.css, 'css')}>
               {copiedSection === 'css' ? 'Copied!' : 'Copy Code'}
             </button>
           </div>
           <SyntaxHighlighter language="css" style={customDracula} customStyle={customStyle}>
-            {adminCode.css}
+            {code.css}
           </SyntaxHighlighter>
         </div>
         <div className={styles.codeSection}>
           <div className={styles.codeHeader}>
             <h3 className={styles.codeHeading}>JavaScript Code</h3>
-            <button className={styles.copyButton} onClick={() => handleCopy(adminCode.js, 'js')}>
+            <button className={styles.copyButton} onClick={() => handleCopy(code.js, 'js')}>
               {copiedSection === 'js' ? 'Copied!' : 'Copy Code'}
             </button>
           </div>
           <SyntaxHighlighter language="javascript" style={customDracula} customStyle={customStyle}>
-            {adminCode.js}
+            {code.js}
           </SyntaxHighlighter>
         </div>
       </div>

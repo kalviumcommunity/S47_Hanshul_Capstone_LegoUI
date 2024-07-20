@@ -13,8 +13,20 @@ export default function NavBar({ toggleSidebar }) {
   const [open, setopen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, AdminEmail } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const handlePostCode = () =>{
+    if (user) {
+      const userEmail = user.provider === "JWT" ? user.email : user.user.email;
+      if (userEmail === AdminEmail) {
+        navigate('/code/admin/post');
+      }
+      else {
+        navigate('/code/user/post');
+      }
+    }
+  }
 
   const handleJWTLogout = () => {
     // setLoading(true);
@@ -61,9 +73,14 @@ export default function NavBar({ toggleSidebar }) {
 
           <div className={nav.rightnav}>
             <div>
-              <Link to={"/code/admin/post"}>
-                <h4>Post Code</h4>
+              <Link to={"/code/user/uploads"}>
+                <h4>Users Post</h4>
               </Link>
+            </div>
+            <div>
+              <a onClick={handlePostCode}>
+                <h4>Post Code</h4>
+              </a>
             </div>
             <div>
               <Togalbtn />

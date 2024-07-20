@@ -12,14 +12,16 @@ import ChangePassword from "./screens/Profile/ChangePassword.jsx";
 import Profile from "./screens/Profile/Profile.jsx";
 import EditProfile from "./screens/Profile/EditProfile.jsx";
 import Adminpost from "./screens/post/Adminpost.jsx";
+import UserPostForm from "./screens/post/Userpostform.jsx";
 import UserProfile from "./screens/main/Userprofile.jsx";
+import UserPostContainer from "./screens/post/UserPost.jsx";
 import CodePage from "./screens/mainPageCompo/CodePage.jsx";
 import Page404 from "./screens/other/Page404.jsx";
+import UserFilteredPost from "./screens/post/UserFilteredPosts.jsx";
 
 function App() {
-  const { user } = useContext(UserContext);
-  const AdminEmail = "hanshulkumawat22@gmail.com";
-  
+  const { user, AdminEmail } = useContext(UserContext);
+
   let userEmail = "";
   if (user) {
     userEmail = user.provider === "JWT" ? user.email : user.user.email;
@@ -40,11 +42,16 @@ function App() {
           <Route path="/profile/changepassword" element={<ChangePassword />} />
           <Route path="/loggedUser" element={<UserProfile />} />
           <Route path="/codepage" element={<CodePage />} />
+          <Route path="/code/user/post" element={<UserPostForm />} />
+          <Route path="/code/user/uploads" element={<UserPostContainer />} />
+          <Route path="/profile/uploads" element={<UserFilteredPost />} />
           <Route path="*" element={<Page404 />} />
 
           {/* Admin Routes */}
           {user && userEmail === AdminEmail && user.provider !== "JWT" && (
-            <Route path="/code/admin/post" element={<Adminpost />} />
+            <>
+              <Route path="/code/admin/post" element={<Adminpost />} />
+            </>
           )}
         </Routes>
       </Router>

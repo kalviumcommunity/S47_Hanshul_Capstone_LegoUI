@@ -10,6 +10,7 @@ const OAuth2Strategy = require('passport-google-oauth2').Strategy;
 const userdb = require('./model/user.Schema.js');
 const userRoutes = require('./routes/userRoutes.js');
 const admincodes = require('./routes/admincodes.routes.js');
+const usercodes = require('./routes/usercodes.routes')
 
 
 const clientid = process.env.CLIENTID;
@@ -25,6 +26,7 @@ app.use(express.json());
  // Load Routes
 app.use('/api/users', userRoutes)
 app.use('/api/admin',admincodes);
+app.use('/api/user',usercodes);
 
 // setup session 
 app.use(session({
