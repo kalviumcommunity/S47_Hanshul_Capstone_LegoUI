@@ -48,8 +48,7 @@ passport.use(
             scope: ["email", "profile"]
         },
         async(accessToken, refreshToken, profile, done)=>{
-            console.log("Profile is ", profile)
-            try{
+            try{console.log(profile)
                 let user = await userdb.findOne({googleId: profile.id})
                 if(!user){
                     user = new userdb({

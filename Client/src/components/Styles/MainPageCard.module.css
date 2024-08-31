@@ -50,7 +50,7 @@
     height: 100px;
 }
 
-.cardbody button {
+.cardbody .sourcecode {
     background-color: rgba(0, 0, 0, 0.555);
     border: 2px solid whitesmoke;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.393);
@@ -61,3 +61,48 @@
     cursor: pointer;
 }
 
+.Displaybtns{
+        display: none;
+}
+
+.editbtns{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    
+}
+
+.editbtns > :nth-child(2) {
+    background-color: red
+}
+
+.editbtns > :nth-child(2):hover{
+    background-color: #e57575;
+}
+.editbtns > :nth-child(1) {
+    background-color: green;
+}
+
+.editbtns > :nth-child(1):hover{
+    background-color: rgb(36, 214, 36);
+}
+
+.editbtn{
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icons{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    margin: 0 auto;
+
+}

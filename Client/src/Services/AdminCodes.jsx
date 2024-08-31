@@ -10,5 +10,4 @@ export const getAdminCodes = async () => {
   }
 };
 
-// You can add more API methods here
 

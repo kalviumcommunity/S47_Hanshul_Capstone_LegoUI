@@ -3,6 +3,7 @@ import { UserContext } from '../../Services/UserContext';
 import { Link, useNavigate } from "react-router-dom";
 import nav from "../Styles/NavBar.module.css";
 import { motion } from "framer-motion";
+import axios from 'axios';
 //components
 import HamburgerMenu from "./HamburgerMenu";
 import Togalbtn from "../Compo/Togalbtn";
@@ -17,6 +18,7 @@ export default function NavBar({ toggleSidebar }) {
   const navigate = useNavigate();
 
   const handlePostCode = () =>{
+    console.log(user)
     if (user) {
       const userEmail = user.provider === "JWT" ? user.email : user.user.email;
       if (userEmail === AdminEmail) {
@@ -28,13 +30,34 @@ export default function NavBar({ toggleSidebar }) {
     }
   }
 
-  const handleJWTLogout = () => {
-    // setLoading(true);
-    localStorage.removeItem('token'); // or remove cookie if using cookies
-    setUser(null);
-    // setLoading(false);
-    navigate('/login'); // redirect to login page or home page
+  const handleJWTLogout = async () => {
+    try {
+      setLoading(true);
+  
+      const token = localStorage.getItem('token');
+  
+      if (!token) {
+        throw new Error("No token found");
+      }
+  
+      await axios.post("http://localhost:500/api/users/jwt/logout", {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      localStorage.removeItem('token');
+      setUser(null);
+  
+      setLoading(false);
+      // navigate('/login');
+  
+    } catch (error) {
+      console.log('Logout failed:', error);
+      setLoading(false);
+    }
   };
+  
 
   const googleLogout = () => {
     setLoading(true);
@@ -64,12 +87,12 @@ export default function NavBar({ toggleSidebar }) {
             </div>
           </div>
 
-          <div className={nav.centernav}>
+          {/* <div className={nav.centernav}>
             <div className={nav.searchbaricondiv}>
               <IoMdSearch className={nav.searchbaricon} />
             </div>
             <input placeholder="Search" className={nav.searchbar} type="text" />
-          </div>
+          </div> */}
 
           <div className={nav.rightnav}>
             <div>

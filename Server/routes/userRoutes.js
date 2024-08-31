@@ -22,6 +22,6 @@ router.post('/reset-password/:id/:token', UserControllers.sendUserPasswordReset)
 
 router.post('/changepassword', UserControllers.changeUserPassword);
 router.get('/loggedUser', UserControllers.loggedUser);
-router.get('jwt/logout', UserControllers.userLogout);
+router.post('/jwt/logout', UserControllers.userLogout);
 
 module.exports = router

@@ -1,9 +1,11 @@
-.logo{
-    color: #ACE1FF;
+.logo {
+    color: var(--logo_color);
+    width: ;
 }
 
 
-.navbar{
+.navbar {
+    position: sticky;
     z-index: 2;
     background-color: var(--nev_bar);
     padding: 0 20px 0 20px;
@@ -14,40 +16,42 @@
     height: 60px;
 }
 
-.rightnav div h4{
-    color: #9EDCFF;
+
+.rightnav div h4 {
+    color: var(--link_color);
     font-size: 20px;
     font-weight: 900;
 }
 
-.rightnav div h4:hover{
-    color: rgb(170, 199, 210);
+.rightnav div h4:hover {
+    color: var(--link_hover_color);
     text-decoration: underline;
 }
 
 
-.rightnav{
+.rightnav {
     width: 25%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.leftnav{
+.leftnav {
     width: 9%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 150px;
 }
 
-.centernav{
+.centernav {
     display: flex;
     align-items: center;
     position: relative;
     left: 100px;
 }
 
-.searchbaricon{
+.searchbaricon {
     color: black;
     font-size: 25px;
     position: relative;
@@ -56,23 +60,23 @@
 
 }
 
-.searchbar{
+.searchbar {
     width: 30vw;
     height: 30px;
     border: none;
     outline: none;
-    border:1px solid white;
+    border: 1px solid var(--main_btn_bg_color);
     border-radius: 5px;
-    background-color: white;
+    background-color: var(--main_btn_bg_color);
     padding-left: 7%;
-    color: rgb(0, 0, 0) ;
+    color: var(--main_btn_color);
 }
 
-.searchbar::placeholder{
-    color: rgb(0, 0, 0) ;
+.searchbar::placeholder {
+    color: var(--main_btn_color);
 }
 
-.profile{
+.profile {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,34 +84,31 @@
     height: 50px;
     border-radius: 50%;
     background-color: transparent;
-    background-color: white;
 }
 
-.dropdown{
+.dropdown {
     display: flex;
     flex-direction: column;
     position: absolute;
     width: 40px;
     top: 53px;
     right: -6px;
-    background-color: #f9f9f9;
+    background-color: var(--dropdown_bg_color);
     min-width: 160px;
     padding: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-.dropdown ul{
+.dropdown ul {
     padding: 2%;
     list-style-type: none;
     padding: 0;
     margin: 0;
-    background-color: #e1dbdb;
-    color: black;
 
 }
 
-.profileList{
+.profileList {
     padding: 10px;
     font-size: 20px;
     margin-top: 5px;
@@ -115,21 +116,21 @@
     border-radius: 10px;
     text-align: center;
     font-weight: 700;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) ;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease;
 }
 
-.profileList:hover{
-    background-color:rgb(153, 203, 236);
-    color: #000000;
+.profileList:hover {
+    background-color: var(--dropdown_ul_bg_hover_color);
+    color: var(--dropdown_ul_hover_color);
 }
 
-.link{
-    color: rgb(59, 156, 221);
+.link {
+    color: var(--dropdown_ul_color);
     text-decoration: none;
 }
 
-.loginuser{
+.loginuser {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -137,24 +138,11 @@
     position: relative;
 }
 
-.userimg{
+.userimg {
     width: 50px;
     height: 50px;
-    border-radius: 50%;  
+    border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
     background-size: cover;
-}
-
-.nav-btn{
-    height: 35px;
-    color: rgb(59, 156, 221) ;
-    font-size: 15px;
-    font-weight: bold;
-    width: 70px;
-    border: 2px solid rgb(59, 156, 221);
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: transparent;
-    padding: 5%;
 }

@@ -91,30 +91,49 @@ class UserControllers {
     }
   };
 
-  static changeUserPassword = async (req,res) =>{
-    const {password, password_confirmation} = req.body
-    if(password && password_confirmation) {
-      if(password !== password_confirmation) {
-        res.send({status: "failed", msg: "Password and Confirm Password does not match"})
-      }else{
-        const salt = await bcrypt.genSalt(10);
-        const newHashPassword = await bcrypt.hash(password, salt);
-        // res.send({status: "success", msg: "Password changed successfully"})
-        await UserModel.findOneAndUpdate(req.user._id,{
-          $set : {password: newHashPassword},
-
-        });
-        res.send({
-          status : "success",
-          msg : "Password changed successfully"
-        });
-        console.log("new password is :",newHashPassword);
-        console.log(req.user._id);
-      }
-    }else{
-      res.send({status: "failed", msg: "All fields are required"})
+  static changeUserPassword = async (req, res) => {
+    const { old_password, new_password, confirmation_new_password } = req.body;
+  
+    if (!old_password || !new_password || !confirmation_new_password) {
+      return res.send({ status: "failed", msg: "All fields are required" });
     }
-  }
+  
+    try {
+      // Verify old password
+      const user = await UserModel.findById(req.user._id);
+      const isMatch = await bcrypt.compare(old_password, user.password);
+      if (!isMatch) {
+        return res.send({ status: "failed", msg: "Old password is incorrect" });
+      }
+  
+      // Check if new password is the same as the old password
+      const isSameAsOld = await bcrypt.compare(new_password, user.password);
+      if (isSameAsOld) {
+        return res.send({ status: "failed", msg: "New password must be different from the old password" });
+      }
+  
+      // Check if new password and confirmation match
+      if (new_password !== confirmation_new_password) {
+        return res.send({ status: "failed", msg: "New Password and Confirm New Password do not match" });
+      }
+  
+      // Hash the new password
+      const salt = await bcrypt.genSalt(10);
+      const newHashPassword = await bcrypt.hash(new_password, salt);
+  
+      // Update the password in the database
+      await UserModel.findByIdAndUpdate(req.user._id, {
+        $set: { password: newHashPassword }
+      });
+  
+      res.send({ status: "success", msg: "Password changed successfully" });
+      console.log("New password is:", newHashPassword);
+      console.log("User ID:", req.user._id);
+    } catch (error) {
+      console.error(error);
+      res.send({ status: "failed", msg: "An error occurred while changing the password" });
+    }
+  };
 
 
   static sendUserPasswordResetEmail = async (req,res) => {

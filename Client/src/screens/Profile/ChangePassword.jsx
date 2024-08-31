@@ -28,8 +28,8 @@ function ChangePassword() {
         "http://localhost:500/api/users/changepassword",
         {
           old_password: oldPassword,
-          password: newPassword,
-          password_confirmation: confirmPassword,
+          new_password: newPassword,
+          confirmation_new_password: confirmPassword,
         },
         {
           headers: {
@@ -129,7 +129,7 @@ function ChangePassword() {
             <div className={profile.btn}>
               <button type="submit">Change Password</button>
             </div>
-            {/* {message && <p className="message">{message}</p>} */}
+            {message && <p className="message">{message}</p>}
           </form>
         </div>
       </div>

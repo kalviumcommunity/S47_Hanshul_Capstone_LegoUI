@@ -12,7 +12,7 @@ function LoginForm() {
   const handlelogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:500/api/users/login", {
+      const res = await axios.post("http://localhost:500/api/users/login", {                    
         email,
         password,
       });

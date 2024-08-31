@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 50px;
+    gap: 35px;
     width: calc(l00vw - 250px);
     margin-left: 250px;
     background-color: #55698B;

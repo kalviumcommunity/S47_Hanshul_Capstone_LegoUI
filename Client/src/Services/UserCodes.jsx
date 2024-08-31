@@ -10,5 +10,4 @@ export const getUserCodes = async () => {
   }
 };
 
-// You can add more API methods here
 

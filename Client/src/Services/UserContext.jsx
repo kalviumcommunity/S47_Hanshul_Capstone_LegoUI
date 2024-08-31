@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
   const [adminCodes, setAdminCodes] = useState([]);
   const [userCodes, setUserCodes] = useState([]);
   const [AdminEmail, setAdminEmail] = useState('hanshulkumawat22@gmail.com')
+  const [Displaybtns, setDisplaybtns] = useState(false)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -22,15 +23,17 @@ export const UserProvider = ({ children }) => {
         if (token) {
           const jwtUserData = await getJWTUser(token);
           setUser(jwtUserData.data);
-        } else {
+          console.log(object)
+         } else {
           const googleUserData = await getGoogleUser();
           setUser(googleUserData);
+          console.log('Google User Data:', googleUserData);
         }
+        
       } catch (error) {
         setError('Failed to fetch user data');
       } finally {
         setLoading(false);
-        
       }
     };
 
@@ -61,9 +64,21 @@ export const UserProvider = ({ children }) => {
 
     fetchUserCodes();
   }, []);
+  useEffect(()=>{
+    const checkuser =  () =>{
+      try {
+        if(user.email || user.user.email === AdminEmail){
+          setDisplaybtns(true)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    checkuser()
+  })
 
   return (
-    <UserContext.Provider value={{ user, loading, error, setUser, adminCodes, userCodes,AdminEmail }}>
+    <UserContext.Provider value={{ user, loading, error, setUser, adminCodes, userCodes, AdminEmail, Displaybtns, setDisplaybtns }}>
       {children}
     </UserContext.Provider>
   );

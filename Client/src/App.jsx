@@ -18,34 +18,43 @@ import UserPostContainer from "./screens/post/UserPost.jsx";
 import CodePage from "./screens/mainPageCompo/CodePage.jsx";
 import Page404 from "./screens/other/Page404.jsx";
 import UserFilteredPost from "./screens/post/UserFilteredPosts.jsx";
+import ProtectedRoutes from "./Utiles/ProtectedRoutes.jsx";
 
 function App() {
   const { user, AdminEmail } = useContext(UserContext);
 
   let userEmail = "";
   if (user) {
-    userEmail = user.provider === "JWT" ? user.email : user.user.email;
+    userEmail = user.provider === "JWT" ? user.email : user.email;
+    // console.log(user)
   }
 
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          {/* Public Routes  */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/forgotPassword" element={<ForgotPasswordForm />} />
-          <Route path="/home" element={<MainPage />} />
           <Route path="/reset/:id/:token" element={<ResetPassword />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="/profile/changepassword" element={<ChangePassword />} />
-          <Route path="/loggedUser" element={<UserProfile />} />
-          <Route path="/codepage" element={<CodePage />} />
-          <Route path="/code/user/post" element={<UserPostForm />} />
-          <Route path="/code/user/uploads" element={<UserPostContainer />} />
-          <Route path="/profile/uploads" element={<UserFilteredPost />} />
-          <Route path="*" element={<Page404 />} />
+          <Route path="/" element={<LandingPage />} />
+
+
+
+          {/* Protected Routed  */}
+          <Route element= {<ProtectedRoutes/>}>
+            <Route path="/home" element={<MainPage />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/edit" element={<EditProfile />} />
+            <Route path="/profile/changepassword" element={<ChangePassword />} />
+            <Route path="/loggedUser" element={<UserProfile />} />
+            <Route path="/codepage" element={<CodePage />} />
+            <Route path="/code/user/post" element={<UserPostForm />} />
+            <Route path="/code/user/uploads" element={<UserPostContainer />} />
+            <Route path="/profile/uploads" element={<UserFilteredPost />} />
+            <Route path="*" element={<Page404 />} />
+          </Route>
 
           {/* Admin Routes */}
           {user && userEmail === AdminEmail && user.provider !== "JWT" && (
@@ -53,6 +62,7 @@ function App() {
               <Route path="/code/admin/post" element={<Adminpost />} />
             </>
           )}
+
         </Routes>
       </Router>
     </>
@@ -60,3 +70,6 @@ function App() {
 }
 
 export default App;
+
+
+
