@@ -26,6 +26,10 @@ const userSchema = new mongoose .Schema({
     provider : {
         type : String,
         required : true
+    },
+    image : {
+        type : String,
+        required : true
     }
 })
 

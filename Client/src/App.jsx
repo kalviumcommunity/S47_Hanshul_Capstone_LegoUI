@@ -25,8 +25,8 @@ function App() {
 
   let userEmail = "";
   if (user) {
-    userEmail = user.provider === "JWT" ? user.email : user.email;
-    // console.log(user)
+    userEmail = user.provider === "JWT" ? user.email : user.user.email;
+
   }
 
   return (
@@ -54,10 +54,11 @@ function App() {
             <Route path="/code/user/uploads" element={<UserPostContainer />} />
             <Route path="/profile/uploads" element={<UserFilteredPost />} />
             <Route path="*" element={<Page404 />} />
+            <Route path="/code/user/post/edit" element={<UserPostForm />} />
           </Route>
 
           {/* Admin Routes */}
-          {user && userEmail === AdminEmail && user.provider !== "JWT" && (
+          {user && userEmail === AdminEmail && (
             <>
               <Route path="/code/admin/post" element={<Adminpost />} />
             </>

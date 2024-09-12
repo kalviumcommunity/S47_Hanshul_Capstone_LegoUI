@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styles/HamburgerMenu.css";
 
-export default function HamburgerMenu({ toggleSidebar }) {
+export default function HamburgerMenu({toggleSidebar}) {
   return (
     <>
     <div onClick={toggleSidebar}>

@@ -19,7 +19,7 @@ function LoginForm() {
 
       if (res.status === 200 && res.data.status === "success") {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // localStorage.setItem("user", JSON.stringify(res.data.user));
         // Update global authenticated state
         // updateAuthenticated(true);
         navigate("/home");

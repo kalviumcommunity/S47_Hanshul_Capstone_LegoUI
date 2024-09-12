@@ -48,6 +48,7 @@ function Adminpost() {
       });
       setMessage('Your code is uploaded');
     } catch (error) {
+      console.log(formData)
       console.error('Error uploading data', error);
       setMessage('Failed to upload data');
     } finally {

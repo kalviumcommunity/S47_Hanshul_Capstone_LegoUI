@@ -61,10 +61,6 @@
     cursor: pointer;
 }
 
-.Displaybtns{
-        display: none;
-}
-
 .editbtns{
     display: flex;
     justify-content: space-between;

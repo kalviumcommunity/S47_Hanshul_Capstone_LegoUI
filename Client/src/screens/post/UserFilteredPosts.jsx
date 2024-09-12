@@ -4,12 +4,21 @@ import styles from '../Styles/UserPost.module.css';
 import { UserContext } from '../../Services/UserContext';
 
 const UserFilteredPost = () => {
-  const { userCodes, user } = useContext(UserContext);
+  const {setDisplaybtns,Displaybtns,user, userCodes,setUserCodes} = useContext(UserContext);
 
   // Determine the user's email based on the login provider
   let userEmail = "";
   if (user) {
     userEmail = user.provider === "JWT" ? user.email : user.user.email;
+  }
+
+  try {
+    if(userEmail ){
+    setDisplaybtns(true)
+  }
+  } catch (error) {
+    console.log(error);
+    
   }
 
 
@@ -23,7 +32,7 @@ const UserFilteredPost = () => {
       </div>
       <div className={styles.container}>
         {filteredUserCodes.map((userCode) => (
-          <Card key={userCode._id} userCode={userCode} />
+          <Card key={userCode._id} Displaybtns={Displaybtns} userCode={userCode} setUserCodes = {setUserCodes} />
         ))}
       </div>
     </div>
