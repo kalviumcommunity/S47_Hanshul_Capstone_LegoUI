@@ -1,18 +1,21 @@
 /* DisplayPage.module.css */
 
 .maindiv {
-    background: #f0f0f0;
+    background: #55698B;
     padding: 20px;
     font-family: Arial, sans-serif;
+
 }
 
 .container {
-    background: #fff;
+    background: #94a8ca;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90vw;
     margin: 0 auto;
+    color: #F0F8FF;
+    font-weight: 500;
 }
 
 .heading {
@@ -45,9 +48,10 @@
     align-content: center;
     padding: 10px;
     gap: 40px;
+    text-align: center;
 }
 
-.rightSide button{
+.githubbtn{
     display: flex;
     /* flex-direction: column; */
     justify-content: center;
@@ -65,7 +69,7 @@
     cursor: pointer;
 }
 
-.rightSide button:hover {
+.githubbtn:hover {
     background-color: #3F3F3F;
 }
 

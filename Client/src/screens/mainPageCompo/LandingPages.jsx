@@ -3,14 +3,12 @@ import MainPageCardContainer from "../../components/Compo/MainPageCardContainer"
 import { UserContext } from '../../Services/UserContext';
 
 function CardDesigns({ isSidebarOpen }) {
-  const { adminCodes } = useContext(UserContext);
+  const {AdminEmail,user, adminCodes,setDisplaybtns,Displaybtns } = useContext(UserContext);
   const cardDesigns = adminCodes.filter(code => code.sourceCodePath === 'landing_design');
 
 
   try {
-    if(user.user.email||user.email === AdminEmail){
-    console.log(user.user.email === AdminEmail);
-    
+    if(user.user.email === AdminEmail ||user.email === AdminEmail){    
     setDisplaybtns(true)
   }
   } catch (error) {

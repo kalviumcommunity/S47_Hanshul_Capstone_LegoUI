@@ -7,8 +7,7 @@ function CardDesigns({ isSidebarOpen }) {
   const cardDesigns = adminCodes.filter(code => code.sourceCodePath === 'navigation_design');
 
   try {
-    if(user.user.email||user.email === AdminEmail){
-    console.log(user.user.email === AdminEmail);
+    if(user.user.email === AdminEmail ||user.email === AdminEmail){    
     
     setDisplaybtns(true)
   }

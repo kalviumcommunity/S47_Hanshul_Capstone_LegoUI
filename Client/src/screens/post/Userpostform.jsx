@@ -1,74 +1,84 @@
-// import React, { useState, useContext, useEffect } from "react";
-// import axios from "axios";
-// import { motion } from "framer-motion";
-// import styles from "../Styles/adminpost.module.css";
-// import { UserContext } from "../../Services/UserContext";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import styles from "../Styles/adminpost.module.css";
+import { UserContext } from "../../Services/UserContext";
 
-// function UserPostForm() {
-//   const { user } = useContext(UserContext);
-//   const [title, setTitle] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [image, setImage] = useState(null);
-//   const [sourceCodePath, setSourceCodePath] = useState("");
-//   const [githublink, setgithublink] = useState("");
-//   const [html, setHtml] = useState("");
-//   const [css, setCss] = useState("");
-//   const [js, setJs] = useState("");
-//   const [useremail, setUserEmail] = useState("");
-//   const [submitting, setSubmitting] = useState(false);
-//   const [message, setMessage] = useState("");
-//   const [fileName, setFileName] = useState("No file chosen");
+function UserPostForm() {
+  const { user } = useContext(UserContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const codeToEdit = location.state?.code; // Retrieve code object passed from Card
 
-//   useEffect(() => {
-//     if (user) {
-//       setUserEmail(user.provider === "JWT" ? user.email : user.user.email);
-//     }
-//   }, [user]);
-  
+  const [title, setTitle] = useState(codeToEdit?.title || "");
+  const [description, setDescription] = useState(codeToEdit?.description || "");
+  const [image, setImage] = useState(null);
+  const [sourceCodePath, setSourceCodePath] = useState(codeToEdit?.sourceCodePath || "");
+  const [githublink, setgithublink] = useState(codeToEdit?.githublink || "");
+  const [html, setHtml] = useState(codeToEdit?.html || "");
+  const [css, setCss] = useState(codeToEdit?.css || "");
+  const [js, setJs] = useState(codeToEdit?.js || "");
+  const [useremail, setUserEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
+  const [fileName, setFileName] = useState("No file chosen");
 
-//   const handleFileChange = (event) => {
-//     const input = event.target;
-//     if (input.files.length > 0) {
-//       setFileName(input.files[0].name);
-//       setImage(input.files[0]);
-//     } else {
-//       setFileName("No file chosen");
-//     }
-//   };
+  useEffect(() => {
+    if (user) {
+      setUserEmail(user.provider === "JWT" ? user.email : user.user.email);
+    }
+  }, [user]);
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setSubmitting(true);
-//     const formData = new FormData();
-//     formData.append("title", title);
-//     formData.append("description", description);
-//     formData.append("image", image);
-//     formData.append("sourceCodePath", sourceCodePath);
-//     formData.append("githublink", githublink);
-//     formData.append("html", html);
-//     formData.append("css", css);
-//     formData.append("js", js);
-//     formData.append("useremail", useremail);
+  const handleFileChange = (event) => {
+    const input = event.target;
+    if (input.files.length > 0) {
+      setFileName(input.files[0].name);
+      setImage(input.files[0]);
+    } else {
+      setFileName("No file chosen");
+    }
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("image", image);
+    formData.append("sourceCodePath", sourceCodePath);
+    formData.append("githublink", githublink);
+    formData.append("html", html);
+    formData.append("css", css);
+    formData.append("js", js);
+    formData.append("useremail", useremail);
 
-//     try {
-//       setSubmitting(true);
-//       await axios.post("http://localhost:500/api/user/upload", formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       });
-//       setMessage("Your code is uploaded");
-//     } catch (error) {
-//       console.error("Error uploading data", error);
-//       setMessage("Failed to upload data");
-//     } finally {
-//       setSubmitting(false);
-//       setTimeout(() => {
-//         setMessage("");
-//       }, 3000);
-//     }
-//   };
+    try {
+      const url = codeToEdit ? `http://localhost:500/api/user/edit/${codeToEdit._id}` : "http://localhost:500/api/user/upload";
+      const method = codeToEdit ? 'PUT' : 'POST';
+
+      await axios({
+        method,
+        url,
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      setMessage(codeToEdit ? "Your code has been updated" : "Your code is uploaded");
+      navigate("/home"); // Redirect after successful submit
+    } catch (error) {
+      console.error("Error uploading data", error);
+      setMessage("Failed to upload data");
+    } finally {
+      setSubmitting(false);
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
+    }
+  };
 
 //   return (
 //     <motion.div
@@ -78,7 +88,7 @@
 //       transition={{ duration: 1 }}
 //     >
 //       <div className={styles.formdiv}>
-//         <h1 className={styles.header}>Upload Form</h1>
+//         <h1 className={styles.header}>{codeToEdit ? "Edit Code" : "Upload Form"}</h1>
 //         <form className={styles.form} onSubmit={handleSubmit}>
 //           <div className={styles.maindiv}>
 //             <div className={styles.leftdiv}>
@@ -203,91 +213,91 @@
 
 
 // src/components/UserPostForm.js
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import styles from "../Styles/adminpost.module.css";
-import { UserContext } from "../../Services/UserContext";
+// import React, { useState, useEffect, useContext } from "react";
+// import axios from "axios";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import styles from "../Styles/adminpost.module.css";
+// import { UserContext } from "../../Services/UserContext";
 
-function UserPostForm() {
-  const { user } = useContext(UserContext);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const codeToEdit = location.state?.code; // Retrieve code object passed from Card
+// function UserPostForm() {
+//   const { user } = useContext(UserContext);
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const codeToEdit = location.state?.code; // Retrieve code object passed from Card
 
-  const [title, setTitle] = useState(codeToEdit?.title || "");
-  const [description, setDescription] = useState(codeToEdit?.description || "");
-  const [image, setImage] = useState(null);
-  const [sourceCodePath, setSourceCodePath] = useState(codeToEdit?.sourceCodePath || "");
-  const [githublink, setgithublink] = useState(codeToEdit?.githublink || "");
-  const [html, setHtml] = useState(codeToEdit?.html || "");
-  const [css, setCss] = useState(codeToEdit?.css || "");
-  const [js, setJs] = useState(codeToEdit?.js || "");
-  const [useremail, setUserEmail] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [message, setMessage] = useState("");
-  const [fileName, setFileName] = useState("No file chosen");
+//   const [title, setTitle] = useState(codeToEdit?.title || "");
+//   const [description, setDescription] = useState(codeToEdit?.description || "");
+//   const [image, setImage] = useState(null);
+//   const [sourceCodePath, setSourceCodePath] = useState(codeToEdit?.sourceCodePath || "");
+//   const [githublink, setgithublink] = useState(codeToEdit?.githublink || "");
+//   const [html, setHtml] = useState(codeToEdit?.html || "");
+//   const [css, setCss] = useState(codeToEdit?.css || "");
+//   const [js, setJs] = useState(codeToEdit?.js || "");
+//   const [useremail, setUserEmail] = useState("");
+//   const [submitting, setSubmitting] = useState(false);
+//   const [message, setMessage] = useState("");
+//   const [fileName, setFileName] = useState("No file chosen");
 
-  useEffect(() => {
-    if (user) {
-      setUserEmail(user.provider === "JWT" ? user.email : user.user.email);
-    }
-  }, [user]);
+//   useEffect(() => {
+//     if (user) {
+//       setUserEmail(user.provider === "JWT" ? user.email : user.user.email);
+//     }
+//   }, [user]);
 
-  const handleFileChange = (event) => {
-    const input = event.target;
-    if (input.files.length > 0) {
-      setFileName(input.files[0].name);
-      setImage(input.files[0]);
-    } else {
-      setFileName("No file chosen");
-    }
-  };
+//   const handleFileChange = (event) => {
+//     const input = event.target;
+//     if (input.files.length > 0) {
+//       setFileName(input.files[0].name);
+//       setImage(input.files[0]);
+//     } else {
+//       setFileName("No file chosen");
+//     }
+//   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("description", description);
-    formData.append("image", image);
-    formData.append("sourceCodePath", sourceCodePath);
-    formData.append("githublink", githublink);
-    formData.append("html", html);
-    formData.append("css", css);
-    formData.append("js", js);
-    formData.append("useremail", useremail);
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setSubmitting(true);
+//     const formData = new FormData();
+//     formData.append("title", title);
+//     formData.append("description", description);
+//     formData.append("image", image);
+//     formData.append("sourceCodePath", sourceCodePath);
+//     formData.append("githublink", githublink);
+//     formData.append("html", html);
+//     formData.append("css", css);
+//     formData.append("js", js);
+//     formData.append("useremail", useremail);
 
-    try {
-      const url = codeToEdit ? `http://localhost:500/api/user/edit/${codeToEdit._id}` : "http://localhost:500/api/user/upload";
-      const method = codeToEdit ? 'PUT' : 'POST';
+//     try {
+//       const url = codeToEdit ? `http://localhost:500/api/user/edit/${codeToEdit._id}` : "http://localhost:500/api/user/upload";
+//       const method = codeToEdit ? 'PUT' : 'POST';
 
-      await axios({
-        method,
-        url,
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+//       await axios({
+//         method,
+//         url,
+//         data: formData,
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//         },
+//       });
 
-      setMessage(codeToEdit ? "Your code has been updated" : "Your code is uploaded");
-      navigate("/home"); // Redirect after successful submit
-    } catch (error) {
-      console.error("Error uploading data", error);
-      setMessage("Failed to upload data");
-    } finally {
-      setSubmitting(false);
-      setTimeout(() => {
-        setMessage("");
-      }, 3000);
-    }
-  };
+//       setMessage(codeToEdit ? "Your code has been updated" : "Your code is uploaded");
+//       navigate("/home"); // Redirect after successful submit
+//     } catch (error) {
+//       console.error("Error uploading data", error);
+//       setMessage("Failed to upload data");
+//     } finally {
+//       setSubmitting(false);
+//       setTimeout(() => {
+//         setMessage("");
+//       }, 3000);
+//     }
+//   };
 
   return (
     <motion.div
-      className={styles.container}
+      className={styles.cointaner}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -362,7 +372,7 @@ function UserPostForm() {
               </div>
             </div>
             <div className={styles.rightdiv}>
-              <div className={styles.rightelementsdiv}>
+              <div className={styles.rightelemetsdiv}>
                 <label className={styles.sourcecodepath}>HTML :</label>
                 <textarea
                   value={html}
@@ -371,7 +381,7 @@ function UserPostForm() {
                   required
                 ></textarea>
               </div>
-              <div className={styles.rightelementsdiv}>
+              <div className={styles.rightelemetsdiv}>
                 <label className={styles.sourcecodepath}>CSS :</label>
                 <textarea
                   value={css}
@@ -380,7 +390,7 @@ function UserPostForm() {
                   required
                 ></textarea>
               </div>
-              <div className={styles.rightelementsdiv}>
+              <div className={styles.rightelemetsdiv}>
                 <label className={styles.sourcecodepath}>JavaScript :</label>
                 <textarea
                   value={js}

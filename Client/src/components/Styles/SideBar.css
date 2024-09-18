@@ -14,6 +14,12 @@
     /* Ensure sidebar is below navbar */
 }
 
+.sidebar button.active {
+    background-color: #7589AB;
+    color: white;
+  }
+  
+
 .sidebar.open {
     left: 0;
     /* Visible when open */
