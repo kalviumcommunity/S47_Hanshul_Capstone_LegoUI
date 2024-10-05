@@ -1,5 +1,11 @@
 import React from "react";
-import "./Togalbtn.css";
+// import "../Styles/Togalbtn.css";
+import styles from "../Styles/Togalbtn.module.css";
+// import { MdOutlineLightMode } from "react-icons/md";
+// import { IoMoon } from "react-icons/io5";
+import { IoMoon } from "react-icons/io5";
+import { BsFillSunFill } from "react-icons/bs";
+
 
 export default function Togalbtn() {
   const setDarkMode = () => {
@@ -19,7 +25,14 @@ export default function Togalbtn() {
 
   return (
     <>
-        <button onClick={toggleTheme} className="light-dark"></button>
+      <div className={styles.darkmode} onClick={toggleTheme}>
+      <label htmlFor="" className={styles.darkmodelabel}>
+        <input type="checkbox" className={styles.darkmodeinput} />
+        <BsFillSunFill className={styles.sun} />
+        <IoMoon className={styles.moon} />
+        <span className={styles.toggle}></span>
+      </label>
+      </div>
     </>
   );
 }

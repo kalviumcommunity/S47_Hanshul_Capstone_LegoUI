@@ -9,6 +9,8 @@ const passport = require('passport');
 const OAuth2Strategy = require('passport-google-oauth2').Strategy;
 const userdb = require('./model/user.Schema.js');
 const userRoutes = require('./routes/userRoutes.js');
+const admincodes = require('./routes/admincodes.routes.js');
+const usercodes = require('./routes/usercodes.routes')
 
 
 const clientid = process.env.CLIENTID;
@@ -23,6 +25,8 @@ app.use(express.json());
 
  // Load Routes
 app.use('/api/users', userRoutes)
+app.use('/api/admin',admincodes);
+app.use('/api/user',usercodes);
 
 // setup session 
 app.use(session({
@@ -44,15 +48,14 @@ passport.use(
             scope: ["email", "profile"]
         },
         async(accessToken, refreshToken, profile, done)=>{
-            console.log("Profile is ", profile)
-            try{
+            try{console.log(profile)
                 let user = await userdb.findOne({googleId: profile.id})
                 if(!user){
                     user = new userdb({
                         googleId: profile.id,
                         displayName: profile.displayName,
                         email: profile.emails[0].value,
-                        image: profile.photos[0].value
+                        image: profile.photos[0].value,
                     });
                     await user.save();
                 }
@@ -76,13 +79,12 @@ passport.deserializeUser((user, done)=>{
 app.get("/auth/google",passport.authenticate("google", { scope: ["email", "profile"] }));
 
 app.get("/auth/google/callback",passport.authenticate("google", {
-        successRedirect : "http://localhost:3000/",
+        successRedirect : "http://localhost:3000/home",
         failureRedirect: "http://localhost:3000/login"
     })
 )
 
 app.get("/login/sucess",async(req,res)=>{
-
     if(req.user){
         res.status(200).json({message:"Login Success", user: req.user})
     }else{
@@ -93,7 +95,7 @@ app.get("/login/sucess",async(req,res)=>{
 app.get("/logout",async(req,res)=>{
     req.logout(function(err){
         if(err) return next(err);
-        res.redirect('http://localhost:3000');
+        res.redirect('http://localhost:3000/login');
     });
 })
 

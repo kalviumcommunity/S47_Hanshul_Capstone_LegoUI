@@ -1,6 +1,6 @@
 :root{
     --Landing-btn-color1:#583f19 ;       ;
-    --landing--color2:  ;
+
 }
 
 body {
@@ -80,7 +80,7 @@ body {
 .leftnavcomponentslandingpage {
     display: flex;
     font-size: 24px;
-    margin: 30px 0 30px 0;
+    margin: 30px 30px 30px 40px;
     width: 35vw;
     align-items: center;
     justify-content: space-between;

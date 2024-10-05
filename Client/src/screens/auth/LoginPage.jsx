@@ -12,14 +12,14 @@ function LoginForm() {
   const handlelogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:500/api/users/login", {
+      const res = await axios.post("http://localhost:500/api/users/login", {                    
         email,
         password,
       });
 
       if (res.status === 200 && res.data.status === "success") {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // localStorage.setItem("user", JSON.stringify(res.data.user));
         // Update global authenticated state
         // updateAuthenticated(true);
         navigate("/home");
