@@ -24,7 +24,10 @@ app.use(cors({origin: "http://localhost:3000",method : "GET, POST, PUT, DELETE",
 app.use(express.json());
 
  // Load Routes
-app.use('/api/users', userRoutes)
+app.get('/',(req,res)=>{
+ res.send("The server is running!");
+});
+app.use('/api/users', userRoutes);
 app.use('/api/admin',admincodes);
 app.use('/api/user',usercodes);
 
