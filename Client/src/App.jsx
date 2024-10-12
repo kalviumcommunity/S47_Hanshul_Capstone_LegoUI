@@ -22,7 +22,6 @@ import ProtectedRoutes from "./Utiles/ProtectedRoutes.jsx";
 
 function App() {
   const { user, AdminEmail } = useContext(UserContext);
-
   let userEmail = "";
   if (user) {
     userEmail = user.provider === "JWT" ? user.email : user.user.email;

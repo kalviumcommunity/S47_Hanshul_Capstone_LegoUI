@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:500/login/sucess'; 
+const API_URL = 'http://localhost:500/login/success'; 
 
 export const getGoogleUser = async () => {
   
@@ -8,6 +8,7 @@ export const getGoogleUser = async () => {
     const response = await axios.get(API_URL, { withCredentials: true });
 
     if (response.data && response.data.user.email) {
+      console.log("response.data",response.data);
       return response.data;
     } else {
       throw new Error('Invalid Google user data');
