@@ -34,7 +34,7 @@ const ResetPassword = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://localhost:500/api/users/reset-password/${id}/${token}`, {
+      const response = await fetch(`https://s47-hanshul-capstone-legoui.onrender.com/api/users/reset-password/${id}/${token}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -26,7 +26,7 @@ const Card = ({ isSidebarOpen, adminCode, userCode, Displaybtns, setAdminCodes, 
   
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:500/api/user/delete/${code._id}`);
+      await axios.delete(`https://s47-hanshul-capstone-legoui.onrender.com/api/user/delete/${code._id}`);
       setUserCodes((prevCodes) => prevCodes.filter((c) => c._id !== code._id)); // Correctly updating state
       // Reload the list or fetch updated data here
       await fetchUserCodes(); // Optional: function to fetch updated codes
@@ -37,7 +37,7 @@ const Card = ({ isSidebarOpen, adminCode, userCode, Displaybtns, setAdminCodes, 
 
   const fetchUserCodes = async () => {
     try {
-      const response = await axios.get('http://localhost:500/api/user/codes');
+      const response = await axios.get('https://s47-hanshul-capstone-legoui.onrender.com/api/user/codes');
       setUserCodes(response.data); // Set the fetched codes to state
     } catch (error) {
       console.error('Failed to fetch codes', error);

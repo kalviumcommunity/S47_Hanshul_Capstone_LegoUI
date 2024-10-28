@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:500/api/users/loggedUser';
+const API_URL = 'https://s47-hanshul-capstone-legoui.onrender.com/api/users/loggedUser';
 
 export const getJWTUser = async (token) => {
   try {

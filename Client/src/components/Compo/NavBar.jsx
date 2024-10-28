@@ -48,7 +48,7 @@ export default function NavBar({ toggleSidebar }) {
         throw new Error("No token found");
       }
   
-      await axios.post("http://localhost:500/api/users/jwt/logout", {}, {
+      await axios.post("https://s47-hanshul-capstone-legoui.onrender.com/api/users/jwt/logout", {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -68,7 +68,7 @@ export default function NavBar({ toggleSidebar }) {
 
   const googleLogout = () => {
     setLoading(true);
-    window.open("http://localhost:500/logout", "_self");
+    window.open("https://s47-hanshul-capstone-legoui.onrender.com/logout", "_self");
     navigate('/login');
   };
 

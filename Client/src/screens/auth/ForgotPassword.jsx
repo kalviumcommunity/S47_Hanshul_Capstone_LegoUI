@@ -9,7 +9,7 @@ function ForgotPasswordForm() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:500/api/users/send-reset-password-email",
+        "https://s47-hanshul-capstone-legoui.onrender.com/api/users/send-reset-password-email",
         { email }
       );
       alert(response.data.msg);

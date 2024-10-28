@@ -55,7 +55,7 @@ function UserPostForm() {
     formData.append("useremail", useremail);
 
     try {
-      const url = codeToEdit ? `http://localhost:500/api/user/edit/${codeToEdit._id}` : "http://localhost:500/api/user/upload";
+      const url = codeToEdit ? `https://s47-hanshul-capstone-legoui.onrender.com/api/user/edit/${codeToEdit._id}` : "https://s47-hanshul-capstone-legoui.onrender.com/api/user/upload";
       const method = codeToEdit ? 'PUT' : 'POST';
 
       await axios({

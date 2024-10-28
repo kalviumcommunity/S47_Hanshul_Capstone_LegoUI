@@ -25,7 +25,7 @@ function SignUp() {
   };
 
   const loginWithGoogle = () => {
-    window.open("http://localhost:500/auth/google/callback", "_self");
+    window.open("https://s47-hanshul-capstone-legoui.onrender.com/auth/google/callback", "_self");
   };
 
   const handleSignUp = async (e) => {
@@ -42,7 +42,7 @@ function SignUp() {
     }
 
     try {
-      const res = await axios.post("http://localhost:500/api/users/register", {
+      const res = await axios.post("https://s47-hanshul-capstone-legoui.onrender.com/api/users/register", {
         name: username,
         email,
         password,

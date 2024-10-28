@@ -12,7 +12,7 @@ function LoginForm() {
   const handlelogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:500/api/users/login", {                    
+      const res = await axios.post("https://s47-hanshul-capstone-legoui.onrender.com/api/users/login", {                    
         email,
         password,
       });
@@ -41,7 +41,7 @@ function LoginForm() {
   };
 
   const loginwithgoogle = () => {
-    window.open("http://localhost:500/auth/google/callback", "_self");
+    window.open("https://s47-hanshul-capstone-legoui.onrender.com/auth/google/callback", "_self");
   };
 
   return (

@@ -56,7 +56,7 @@ function Adminpost() {
     formData.append('useremail', userEmail);
     
     try {
-      await axios.post('http://localhost:500/api/admin/upload', formData, {
+      await axios.post('https://s47-hanshul-capstone-legoui.onrender.com/api/admin/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
