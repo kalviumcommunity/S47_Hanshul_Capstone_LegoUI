@@ -25,7 +25,7 @@ function ChangePassword() {
 
     try {
       const res = await axios.post(
-        "http://localhost:500/api/users/changepassword",
+        "https://s47-hanshul-capstone-legoui.onrender.com/api/users/changepassword",
         {
           old_password: oldPassword,
           new_password: newPassword,

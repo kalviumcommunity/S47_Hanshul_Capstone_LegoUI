@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:500/login/sucess'; 
+const API_URL = 'https://s47-hanshul-capstone-legoui.onrender.com/login/success'; 
+
 
 export const getGoogleUser = async () => {
   
