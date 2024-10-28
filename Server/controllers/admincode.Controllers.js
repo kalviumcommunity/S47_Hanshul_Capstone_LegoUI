@@ -3,28 +3,20 @@ const AdminCode = require('../model/AdminCodes');
 // Upload new user code
 const uploadAdminCode = async (req, res) => {
   try {
-    const { title, description, sourceCodePath, githublink, html, css, js, useremail, previewLink } = req.body;
-
-    // Check if an image was uploaded
-    const imagePath = req.file ? req.file.path : null;
-
-    if (!imagePath) {
-      return res.status(400).send('Image upload failed. Please upload a valid image.');
-    }
+    const { title, description, sourceCodePath, githublink, html, css, js, useremail } = req.body;
+    const imagePath = req.file.path;
 
     const newCode = new AdminCode({
       title,
       description,
-      imagePath, // Add the image path received from Cloudinary
+      imagePath,
       sourceCodePath,
       githublink,
       html,
       css,
       js,
       useremail,
-      previewLink,
     });
-
     await newCode.save();
     res.status(201).send('Data uploaded successfully');
   } catch (error) {
@@ -48,8 +40,8 @@ const getAdminCodes = async (req, res) => {
 const editAdminCode = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, sourceCodePath, githublink, html, css, js, previewLink, useremail } = req.body;
-    const { image, video } = req.files || {};
+    const { title, description, sourceCodePath, githublink, html, css, js, useremail } = req.body;
+    const imagePath = req.file ? req.file.path : undefined; // Check if file upload is provided
 
     const updateData = {
       title,
@@ -59,17 +51,12 @@ const editAdminCode = async (req, res) => {
       html,
       css,
       js,
-      previewLink,
       useremail,
     };
 
-    // Update imagePath if a new image is provided
-    if (image && image[0]) {
-      updateData.imagePath = image[0].path;
-    }
-    // Update videoPath if a new video is provided
-    if (video && video[0]) {
-      updateData.videoPath = video[0].path;
+    // Only update imagePath if a new image is provided
+    if (imagePath) {
+      updateData.imagePath = imagePath;
     }
 
     const updatedCode = await AdminCode.findByIdAndUpdate(id, updateData, { new: true });
