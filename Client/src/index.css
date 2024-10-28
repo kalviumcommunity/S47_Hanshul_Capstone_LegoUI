@@ -44,7 +44,6 @@ body{
     --card_color:#d2edf1 ;
     --logo_color: #ACE1FF;
     --link_color:#9EDCFF;
-    --link_hover_color:rgb(2, 187, 255);
     --dropdown_bg_color:#F9F9F9;
     --dropdown_ul_bg_color:#DFDADA;
     --dropdown_ul_bg_hover_color:rgb(153, 203, 236);
@@ -53,12 +52,36 @@ body{
     --textarea_bg_color_thumb: #888; 
     --textarea_bg_color_thumb_hover: #555; 
 
-}
+    /* new variables */
+    
+    --main_outerbox_bg_color: #55698b ;
+    --main_doc_innerrbox_bg_img: url(./assets/doc_img.jpg);
+    --main_content_color: #ffffff;
+    --navBar_bg_color:#304057;
+    --navBar_content_color:#ACE1FF;
+    --navBar_link_hover_color:rgb(2, 187, 255);
+    --main_page_btn_bg_color:#583f19 ;
+    --main_sidebar_bg_color:#304057;
+    
+    
+  }
+  
+  [data-theme="dark"] {
+    --main_outerbox_bg_color: #141111 ;
+    --main_doc_innerrbox_bg_img: url(./assets/dark_mode_doc_img.jpg) ;
+    --main_content_color: #ffffff;
+    --navBar_bg_color: #454545;
+    --navBar_content_color:#a0a0a0;
+    --navBar_link_hover_color:rgb(255, 255, 255);
+    --main_sidebar_bg_color:#304057;
+    
 
-[data-theme="dark"] {
+
+
+
     --body_background: #092635;
     --body_color: white;
-    --nev_bar: #5c8374ac;
+    --nev_bar: #989898;
     --main_box_bg_color: #5C8374;
     --ans_backgroung_color: #1B4242;
     --btn_color: #1b4242c5;
@@ -72,7 +95,7 @@ body{
 
 
 
-/* 
+
 ::-webkit-scrollbar {
     width: 12px;
   }
@@ -91,7 +114,7 @@ body{
   
   ::-webkit-scrollbar-thumb:hover {
     background-color: #434190; 
-  } */
+  }
   
   .sidebarOpen {
     margin-left: 250px;
