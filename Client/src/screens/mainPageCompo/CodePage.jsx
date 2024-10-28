@@ -106,6 +106,9 @@ const DisplayPage = () => {
         <a href={code.githublink} target="_blank" rel="noopener noreferrer">
           <button className={styles.githubbtn}><FaGithub /> Github Link</button>
         </a>
+        <a href={code.previewLink} target="_blank" rel="noopener noreferrer">
+          <button className={styles.githubbtn}> Preview</button>
+        </a>
         <div className={styles.codeSection}>
           <div className={styles.codeHeader}>
             <h3 className={styles.codeHeading}>HTML Code</h3>
